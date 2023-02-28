@@ -1,0 +1,419 @@
+body {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.gameArea {
+}
+
+.board {
+  display: flex;
+}
+
+.parent {
+  display: grid;
+  border: 5px solid black;
+  padding: 5px;
+}
+
+.div0 {
+  grid-area: 11 / 11 / 12 / 12;
+}
+
+#gocontainer {
+  display: grid;
+  justify-content: center;
+}
+
+#gocontainer img {
+  width: 50px;
+}
+
+.div1 {
+  grid-area: 11 / 10 / 12 / 11;
+}
+.div2 {
+  grid-area: 11 / 9 / 12 / 10;
+}
+
+.containerh {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+.containerh img {
+  height: 70px;
+}
+
+.containerv {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
+.containerv img {
+  height: 30px;
+}
+
+.div3 {
+  grid-area: 11 / 8 / 12 / 9;
+}
+.div4 {
+  grid-area: 11 / 7 / 12 / 8;
+}
+.div5 {
+  grid-area: 11 / 6 / 12 / 7;
+}
+.div6 {
+  grid-area: 11 / 5 / 12 / 6;
+}
+.div7 {
+  grid-area: 11 / 4 / 12 / 5;
+}
+.div8 {
+  grid-area: 11 / 3 / 12 / 4;
+}
+.div9 {
+  grid-area: 11 / 2 / 12 / 3;
+}
+.div10 {
+  grid-area: 11 / 1 / 12 / 2;
+}
+
+#jailcontainer {
+  display: grid;
+  justify-content: center;
+}
+
+#jailcontainer img {
+  width: 70px;
+}
+
+.div11 {
+  grid-area: 10 / 1 / 11 / 2;
+}
+.div12 {
+  grid-area: 9 / 1 / 10 / 2;
+}
+.div13 {
+  grid-area: 8 / 1 / 9 / 2;
+}
+.div14 {
+  grid-area: 7 / 1 / 8 / 2;
+}
+.div15 {
+  grid-area: 6 / 1 / 7 / 2;
+}
+.div16 {
+  grid-area: 5 / 1 / 6 / 2;
+}
+.div17 {
+  grid-area: 4 / 1 / 5 / 2;
+}
+.div18 {
+  grid-area: 3 / 1 / 4 / 2;
+}
+.div19 {
+  grid-area: 2 / 1 / 3 / 2;
+}
+.div20 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+#wheelcontainer {
+  display: grid;
+  justify-content: center;
+}
+
+#wheelcontainer img {
+  width: 70px;
+}
+.div21 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.div22 {
+  grid-area: 1 / 3 / 2 / 4;
+}
+.div23 {
+  grid-area: 1 / 4 / 2 / 5;
+}
+.div24 {
+  grid-area: 1 / 5 / 2 / 6;
+}
+.div25 {
+  grid-area: 1 / 6 / 2 / 7;
+}
+.div26 {
+  grid-area: 1 / 7 / 2 / 8;
+}
+.div27 {
+  grid-area: 1 / 8 / 2 / 9;
+}
+.div28 {
+  grid-area: 1 / 9 / 2 / 10;
+}
+.div29 {
+  grid-area: 1 / 10 / 2 / 11;
+}
+.div30 {
+  grid-area: 1 / 11 / 2 / 12;
+}
+
+#freeparkingcontainer {
+  display: grid;
+  justify-content: center;
+}
+
+#freeparkingcontainer img {
+  width: 70px;
+}
+.div31 {
+  grid-area: 2 / 11 / 3 / 12;
+}
+.div32 {
+  grid-area: 3 / 11 / 4 / 12;
+}
+.div33 {
+  grid-area: 4 / 11 / 5 / 12;
+}
+.div34 {
+  grid-area: 5 / 11 / 6 / 12;
+}
+.div35 {
+  grid-area: 6 / 11 / 7 / 12;
+}
+.div36 {
+  grid-area: 7 / 11 / 8 / 12;
+}
+.div37 {
+  grid-area: 8 / 11 / 9 / 12;
+}
+.div38 {
+  grid-area: 9 / 11 / 10 / 12;
+}
+.div39 {
+  grid-area: 10 / 11 / 11 / 12;
+}
+
+.div40 {
+  grid-area: 2 / 2 / 11 / 11;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#playernow {
+  color: #0072bc;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#logo {
+  height: 100px;
+  width: auto;
+}
+
+.die {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  margin: 25px 15px 0px 15px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#rolldice {
+  margin: 20px;
+  padding: 5px 10px;
+  background-color: #0072bc;
+  border-color: #0072bc;
+  border-radius: 5px;
+  color: white;
+}
+
+.square {
+  background-color: white;
+  border: 5px solid black;
+  display: grid;
+  align-content: center;
+}
+
+.squareb {
+  background-color: #0072bc;
+  border: 5px solid black;
+  display: grid;
+  align-content: center;
+}
+
+.squarev {
+  background-color: white;
+  border: 5px solid black;
+  display: grid;
+  justify-content: center;
+}
+
+.squareh {
+  background-color: white;
+  border: 5px solid black;
+  display: grid;
+  justify-content: center;
+}
+
+/* grid 每格大小 */
+
+.horizontal {
+  width: 60px;
+  height: 90px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.vertical {
+  height: 60px;
+  width: 90px;
+  font-size: 12px;
+  text-align: center;
+}
+.corner {
+  width: 90px;
+  height: 90px;
+}
+
+/* map 每行flex-direction */
+
+.firstRow {
+  display: flex;
+}
+
+.secondRow {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.thirdRow {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.fourthRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.propertyName {
+}
+
+.propBottom {
+  width: 100%;
+  height: 20px;
+  border-bottom: 5px solid black;
+}
+
+.propLeft {
+  width: 20px;
+  border-left: 5px solid black;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.propTop {
+  width: 100%;
+  height: 20px;
+  border-top: 5px solid black;
+}
+
+.propRight {
+  width: 20px;
+  border-right: 5px solid black;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.prop {
+  background-color: #0072bc;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.side {
+  background-color: #0072bc;
+  min-width: 340px;
+  border: 5px solid black;
+}
+
+.controlBar {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#speedControlBtn {
+  width: 140px;
+  color: #0072bc;
+  background-color: white;
+  border: 5px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+#speedControlBtn:hover {
+  color: white;
+  background-color: #0072bc;
+}
+
+#instructionBtn {
+  width: 140px;
+  color: white;
+  background-color: #0072bc;
+  border: 5px solid white;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#instructionBox {
+  margin: 20px auto;
+  padding: 10px;
+  background-color: white;
+  width: 280px;
+  height: 290px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+#playerBigBox {
+  margin: 20px auto;
+  padding: 20px 10px 20px 10px;
+  background-color: white;
+  width: 280px;
+  height: 340px;
+  border-radius: 10px;
+}
+
+.playerInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 5px solid #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.playerIcon {
+  width: 60px;
+  text-align: center;
+}
+
+.playerMoney {
+  color: #0072bc;
+}
+
+#player1Info {
+  border: 5px solid #0072bc;
+}

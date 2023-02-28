@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="gameArea">
+      <div class="board">
+        <div class="parent">
+          <div class="div0 square corner">
+            <div id="gocontainer">
+              <img src="./img/GO.svg" />
+            </div>
+          </div>
+          <div class="div1 square horizontal firstRow">
+            <div class="prop propBottom"></div>
+          </div>
+          <div class="div2 squareh horizontal firstRow">
+            <div class="containerh">
+              <img src="./img/chances-h.svg" />
+            </div>
+          </div>
+          <div class="div3 square horizontal firstRow">
+            <div class="prop propBottom"></div>
+          </div>
+          <div class="div4 square horizontal firstRow">
+            <div class="prop propBottom"></div>
+          </div>
+          <div class="div5 square horizontal firstRow">
+            <div class="prop propBottom"></div>
+          </div>
+          <div class="div6 square horizontal firstRow">
+            <div class="prop propBottom"></div>
+          </div>
+          <div class="div7 squareh horizontal firstRow">
+            <div class="containerh">
+              <img src="./img/hke.svg" />
+            </div>
+          </div>
+          <div class="div8 square horizontal firstRow">
+            <div class="prop propBottom"></div>
+          </div>
+          <div class="div9 square horizontal firstRow">
+            <div class="prop propBottom"></div>
+          </div>
+          <div class="div10 squareb corner">
+            <div id="jailcontainer">
+              <img src="./img/jail.svg" />
+            </div>
+          </div>
+          <div class="div11 square vertical secondRow">
+            <div class="prop propLeft"></div>
+          </div>
+          <div class="div12 squarev vertical secondRow">
+            <div class="containerv">
+              <img src="./img/incometax.svg" />
+            </div>
+          </div>
+          <div class="div13 square vertical secondRow">
+            <div class="prop propLeft"></div>
+          </div>
+          <div class="div14 square vertical secondRow">
+            <div class="prop propLeft"></div>
+          </div>
+          <div class="div15 square vertical secondRow">
+            <div class="prop propLeft"></div>
+          </div>
+          <div class="div16 square vertical secondRow">
+            <div class="prop propLeft"></div>
+          </div>
+          <div class="div17 squarev vertical secondRow">
+            <div class="containerv">
+              <img src="./img/chances-v.svg" />
+            </div>
+          </div>
+          <div class="div18 square vertical secondRow">
+            <div class="prop propLeft"></div>
+          </div>
+          <div class="div19 square vertical secondRow">
+            <div class="prop propLeft"></div>
+          </div>
+          <div class="div20 square corner">
+            <div id="wheelcontainer">
+              <img src="./img/wheel.svg" />
+            </div>
+          </div>
+          <div class="div21 square horizontal thirdRow">
+            <div class="prop propTop"></div>
+          </div>
+          <div class="div22 square horizontal thirdRow">
+            <div class="prop propTop"></div>
+          </div>
+          <div class="div23 square horizontal thirdRow">
+            <div class="prop propTop"></div>
+          </div>
+          <div class="div24 square horizontal thirdRow">
+            <div class="prop propTop"></div>
+          </div>
+          <div class="div25 squareh horizontal thirdRow">
+            <div class="containerh">
+              <img src="./img/chances-h.svg" />
+            </div>
+          </div>
+          <div class="div26 square horizontal thirdRow">
+            <div class="prop propTop"></div>
+          </div>
+          <div class="div27 squareh horizontal thirdRow">
+            <div class="containerh">
+              <img src="./img/stampduty.svg" />
+            </div>
+          </div>
+          <div class="div28 square horizontal thirdRow">
+            <div class="prop propTop"></div>
+          </div>
+          <div class="div29 square horizontal thirdRow">
+            <div class="prop propTop"></div>
+          </div>
+          <div class="div30 squareb corner">
+            <div id="freeparkingcontainer">
+              <img src="./img/freeparking.svg" />
+            </div>
+          </div>
+          <div class="div31 square vertical fourthRow">
+            <div class="prop propRight"></div>
+          </div>
+          <div class="div32 squarev vertical fourthRow">
+            <div class="containerv">
+              <img src="./img/luxurytax.svg" />
+            </div>
+          </div>
+          <div class="div33 square vertical fourthRow">
+            <div class="prop propRight"></div>
+          </div>
+          <div class="div34 square vertical fourthRow">
+            <div class="prop propRight"></div>
+          </div>
+          <div class="div35 square vertical fourthRow">
+            <div class="prop propRight"></div>
+          </div>
+          <div class="div36 square vertical fourthRow">
+            <div class="prop propRight"></div>
+          </div>
+          <div class="div37 squarev vertical fourthRow">
+            <div class="containerv">
+              <img src="./img/chances-v.svg" />
+            </div>
+          </div>
+          <div class="div38 square vertical fourthRow">
+            <div class="prop propRight"></div>
+          </div>
+          <div class="div39 square vertical fourthRow">
+            <div class="prop propRight"></div>
+          </div>
+          <div class="div40">
+            <div>
+              <h1 style="font-weight: bold">目前玩家</h1>
+              <p id="playernow">Nana</p>
+              <div id="logo"><img src="img/logo.svg" /></div>
+              <div id="dice-container"></div>
+              <button id="rolldice" onclick="rollAndDisplayDice()">
+                擲骰仔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="side">
+          <div class="controlBar">
+            <button id="speedControlBtn">加速遊戲節奏</button>
+            <button id="instructionBtn">規則介紹</button>
+          </div>
+
+          <div id="instructionBox">
+            <ul>
+              <li>每位玩家起始金額為＄15000。</li>
+              <li>每次路過起點會獲得＄2000。</li>
+              <li>點擊加速按鈕可以使遊戲速度變快，或者恢復原樣。</li>
+              <li>點擊骰仔進行遊戲，電腦會為你自動搖骰仔。</li>
+              <li>
+                遊戲目標：當有玩家破產，遊戲即結束，資產最多的玩家為贏家。
+              </li>
+              <li>每個棋格都會觸發對應事件，分為以下幾種：</li>
+              <li>
+                普通地產：玩家可以自由購買並且升級造房，其他玩家經過你的地產時要向你繳納租金，鼠標放在棋格上會顯示地產詳細信息。
+              </li>
+              <li>機會：隨機觸發一個好運或者厄運。</li>
+              <li>繳稅：繳納隨機數額的稅。</li>
+              <li>起點：獲得＄2000。</li>
+              <li>監獄：隨機的天數內停止不能行動。</li>
+              <li>
+                地租機制：一共有四個等級，分別是空地，房子，別墅，酒店。等級越高收的地租越高，對應比率分別是地價的五分之一，二分之一，原價，雙倍價錢。
+              </li>
+              <li>破產機制：一旦有玩家的錢低於0，馬上宣告破產，遊戲結束。</li>
+            </ul>
+          </div>
+
+          <div id="playerBigBox">
+            <div id="player1Info" class="playerInfo">
+              <div class="playerIcon">
+                <img src="./img/player1.png" height="40px" />
+              </div>
+              <div class="playerName">Nana</div>
+              <div class="playerMoney">$15000</div>
+            </div>
+            <div id="player2Info" class="playerInfo">
+              <div class="playerIcon">
+                <img src="./img/player2.png" height="40px" />
+              </div>
+              <div class="playerName">亞視一姐</div>
+              <div class="playerMoney">$15000</div>
+            </div>
+            <div id="player3Info" class="playerInfo">
+              <div class="playerIcon">
+                <img src="./img/player3.png" height="40px" />
+              </div>
+              <div class="playerName">Happy 8</div>
+              <div class="playerMoney">$15000</div>
+            </div>
+            <div id="player4Info" class="playerInfo">
+              <div class="playerIcon">
+                <img src="./img/player4.png" height="40px" />
+              </div>
+              <div class="playerName">港大美女</div>
+              <div class="playerMoney">$15000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js" type="text/javascript"></script>
+  </body>
+</html>

@@ -11,10 +11,64 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>疫情版大富翁</title>
   </head>
   <body>
     <div class="gameArea">
+      <div class="startPage">
+        <div class="playerSettings">
+          <h1>歡迎光臨疫情版大富翁</h1>
+          <div class="playerBar">
+            <div class="playerIcon startPagePlayer">
+              <img src="./img/player1.png" height="40px" />
+            </div>
+            <label for="player1Name">玩家 1 名稱：</label
+            ><input
+              id="typePlayer1Name"
+              name="player1Name"
+              type="text"
+              maxlength="12"
+            />
+          </div>
+          <div class="playerBar">
+            <div class="playerIcon startPagePlayer">
+              <img src="./img/player2.png" height="40px" />
+            </div>
+            <label for="player2Name">玩家 2 名稱：</label
+            ><input
+              id="typePlayer2Name"
+              name="player2Name"
+              type="text"
+              maxlength="12"
+            />
+          </div>
+          <div class="playerBar">
+            <div class="playerIcon startPagePlayer">
+              <img src="./img/player3.png" height="40px" />
+            </div>
+            <label for="player3Name">玩家 3 名稱：</label
+            ><input
+              id="typePlayer3Name"
+              name="player3Name"
+              type="text"
+              maxlength="12"
+            />
+          </div>
+          <div class="playerBar">
+            <div class="playerIcon startPagePlayer">
+              <img src="./img/player4.png" height="40px" />
+            </div>
+            <label for="player4Name">玩家 4 名稱：</label
+            ><input
+              id="typePlayer4Name"
+              name="player4Name"
+              type="text"
+              maxlength="12"
+            />
+          </div>
+          <button class="startBtn" onclick="startGame()">開始遊戲</button>
+        </div>
+      </div>
       <div class="board">
         <div class="parent">
           <div class="div0 square corner">
@@ -209,28 +263,28 @@
               <div class="playerIcon">
                 <img src="./img/player1.png" height="40px" />
               </div>
-              <div class="playerName">Nana</div>
+              <div id="player1Name" class="playerName">Nana</div>
               <div class="playerMoney">$15000</div>
             </div>
             <div id="player2Info" class="playerInfo">
               <div class="playerIcon">
                 <img src="./img/player2.png" height="40px" />
               </div>
-              <div class="playerName">亞視一姐</div>
+              <div id="player2Name" class="playerName">亞視一姐</div>
               <div class="playerMoney">$15000</div>
             </div>
             <div id="player3Info" class="playerInfo">
               <div class="playerIcon">
                 <img src="./img/player3.png" height="40px" />
               </div>
-              <div class="playerName">Happy 8</div>
+              <div id="player3Name" class="playerName">Happy 8</div>
               <div class="playerMoney">$15000</div>
             </div>
             <div id="player4Info" class="playerInfo">
               <div class="playerIcon">
                 <img src="./img/player4.png" height="40px" />
               </div>
-              <div class="playerName">港大美女</div>
+              <div id="player4Name" class="playerName">港大美女</div>
               <div class="playerMoney">$15000</div>
             </div>
           </div>

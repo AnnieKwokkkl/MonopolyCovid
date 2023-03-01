@@ -2,6 +2,10 @@ body {
   font-family: "Noto Sans TC", sans-serif;
 }
 
+.hide {
+  display: none !important;
+}
+
 .gameArea {
 }
 
@@ -13,6 +17,57 @@ body {
   display: grid;
   border: 5px solid black;
   padding: 5px;
+}
+
+.startPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1185px;
+  height: 835px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: large;
+  font-weight: 600;
+  text-align: center;
+}
+
+.playerSettings {
+  width: 400px;
+  height: 300px;
+  background-color: #0072bc;
+  padding: 0px 50px 100px 50px;
+  border: 10px solid #ffffff;
+  border-radius: 10px;
+}
+
+.playerBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.startBtn {
+  width: 200px;
+  height: 50px;
+  color: #0072bc;
+  background-color: white;
+  border: 5px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 30px;
+}
+
+.startPagePlayer {
+  display: inline-block;
+}
+
+.startBtn:hover {
+  color: white;
+  background-color: #0072bc;
 }
 
 .div0 {

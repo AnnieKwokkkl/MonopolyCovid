@@ -1,16 +1,21 @@
 var places = [];
 function CreateBox(index, name, level, value, owner) {
   this.index = index;
-  this.name = name; // 地名
-  this.level = level; // 地產level (0則為非地產)
-  this.value = value; // 價值
-  this.owner = owner; // 地主
+  this.name = name; // property name
+  this.level = level; // property level (0 = not property)
+  this.value = value; // (property value)
+  this.owner = owner; // (property owner)
   if (this.level != 0) {
-    //加地名落HTML
+    //add property name to html
     this.node = document.querySelector(".div" + index);
     this.node.firstElementChild.append(name);
   }
   places.push(this);
+}
+
+function startGame() {
+  document.querySelector("#player1Name").innerText = "test";
+  document.querySelector(".startPage").classList.add("hide");
 }
 
 //Updated by Aqua 02.28 7:00pm

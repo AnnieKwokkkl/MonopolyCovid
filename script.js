@@ -14,8 +14,29 @@ function CreateBox(index, name, level, value, owner) {
 }
 
 function startGame() {
-  document.querySelector("#player1Name").innerText = "test";
+  const player1Name = document.getElementById("typePlayer1Name").value;
+  const player2Name = document.getElementById("typePlayer2Name").value;
+  const player3Name = document.getElementById("typePlayer3Name").value;
+  const player4Name = document.getElementById("typePlayer4Name").value;
+  players[0].name = player1Name;
+  players[1].name = player2Name;
+  players[2].name = player3Name;
+  players[3].name = player4Name;
+  document.querySelector("#player1Name").innerText = player1Name;
+  document.querySelector("#player2Name").innerText = player2Name;
+  document.querySelector("#player3Name").innerText = player3Name;
+  document.querySelector("#player4Name").innerText = player4Name;
   document.querySelector(".startPage").classList.add("hide");
+  document.getElementById("playernow").innerText = players[0].name;
+  for (i = 1; i <= players.length; i++) {
+    const node = document.createElement("div");
+    node.setAttribute("id", `player${i}Chess`);
+    const img = document.createElement("img");
+    img.src = `img/player${i}.png`;
+    node.classList.add("playerIcon", "chess");
+    node.appendChild(img);
+    document.querySelector(".div0").appendChild(node);
+  }
 }
 
 //Updated by Aqua 02.28 7:00pm
@@ -96,19 +117,18 @@ function rollAndDisplayDice() {
   diceContainer.appendChild(die2Img);
 }
 
-var players = []
-function CreatePlayer(name, order, money, state, stop, img, position){
-  this.name = name //名字
-  this.order = order //行進順序
-  this.money = money //目前持有金錢
-  this.state = state //狀態：活躍或破產
-  this.stop = stop //隔離天數
-  this.img = img //角色棋子圖片
-  this.position = position //當前位置
-  players.push(this)
+var players = [];
+function CreatePlayer(name, order, money, state, stop, position) {
+  this.name = name; //名字
+  this.order = order; //行進順序
+  this.money = money; //目前持有金錢
+  this.state = state; //狀態：活躍或破產
+  this.stop = stop; //隔離天數
+  this.position = position; //當前位置
+  players.push(this);
 }
 
-new CreatePlayer("Nana", 1, 15000, "active", 0, 'img/player1.png', 0)
-new CreatePlayer("亞視一姐", 2, 15000, "active", 0, 'img/player2.png', 0)
-new CreatePlayer("Happy 8", 3, 15000, "active", 0, 'img/player3.png', 0)
-new CreatePlayer("港大美女", 4, 15000, "active", 0, 'img/player4.png', 0)
+new CreatePlayer("Nana", 1, 15000, "active", 0, 0);
+new CreatePlayer("亞視一姐", 2, 15000, "active", 0, 0);
+new CreatePlayer("Happy 8", 3, 15000, "active", 0, 0);
+new CreatePlayer("港大美女", 4, 15000, "active", 0, 0);

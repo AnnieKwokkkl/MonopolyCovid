@@ -23,8 +23,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1185px;
-  height: 835px;
+  width: 1200px;
+  height: 850px;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;

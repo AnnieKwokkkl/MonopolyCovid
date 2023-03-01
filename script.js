@@ -1,4 +1,5 @@
 var places = [];
+var speed = 300;
 function CreateBox(index, name, level, value, owner) {
   this.index = index;
   this.name = name; // property name
@@ -13,15 +14,27 @@ function CreateBox(index, name, level, value, owner) {
   places.push(this);
 }
 
+var players = [];
+function CreatePlayer(name, order, money, state, stop, position) {
+  this.name = name; //名字
+  this.order = order; //行進順序
+  this.money = money; //目前持有金錢
+  this.state = state; //狀態：活躍或破產
+  this.stop = stop; //隔離天數
+  this.position = position; //當前位置
+  this.rollDice = false;
+  players.push(this);
+}
+
 function startGame() {
   const player1Name = document.getElementById("typePlayer1Name").value;
   const player2Name = document.getElementById("typePlayer2Name").value;
   const player3Name = document.getElementById("typePlayer3Name").value;
   const player4Name = document.getElementById("typePlayer4Name").value;
-  players[0].name = player1Name;
-  players[1].name = player2Name;
-  players[2].name = player3Name;
-  players[3].name = player4Name;
+  new CreatePlayer(player1Name, 1, 15000, "active", 0, 0);
+  new CreatePlayer(player2Name, 2, 15000, "active", 0, 0);
+  new CreatePlayer(player3Name, 3, 15000, "active", 0, 0);
+  new CreatePlayer(player4Name, 4, 15000, "active", 0, 0);
   document.querySelector("#player1Name").innerText = player1Name;
   document.querySelector("#player2Name").innerText = player2Name;
   document.querySelector("#player3Name").innerText = player3Name;
@@ -89,6 +102,33 @@ function rollDice() {
 
   // Calculate the total value of both dice
   const total = die1 + die2;
+  let i = 1;
+
+  function playerMove(index) {
+    setTimeout(function () {
+      if (players[index - 1].position < 39) {
+        players[index - 1].position += 1;
+      } else {
+        players[index - 1].position = 0;
+      }
+      console.log(players[index - 1].position);
+      document.getElementById(`player${index}Chess`).remove();
+      const node = document.createElement("div");
+      node.setAttribute("id", `player${index}Chess`);
+      const img = document.createElement("img");
+      img.src = `img/player${index}.png`;
+      node.classList.add("playerIcon", "chess");
+      node.appendChild(img);
+      document
+        .querySelector(`.div${players[index - 1].position}`)
+        .appendChild(node);
+      i++;
+      if (i <= total) {
+        playerMove(1);
+      }
+    }, speed);
+  }
+  playerMove(1);
 
   // Return an object containing the values of both dice and their total
   return {
@@ -116,19 +156,3 @@ function rollAndDisplayDice() {
   die2Img.style.backgroundImage = `url('img/${result.die2}.svg')`;
   diceContainer.appendChild(die2Img);
 }
-
-var players = [];
-function CreatePlayer(name, order, money, state, stop, position) {
-  this.name = name; //名字
-  this.order = order; //行進順序
-  this.money = money; //目前持有金錢
-  this.state = state; //狀態：活躍或破產
-  this.stop = stop; //隔離天數
-  this.position = position; //當前位置
-  players.push(this);
-}
-
-new CreatePlayer("Nana", 1, 15000, "active", 0, 0);
-new CreatePlayer("亞視一姐", 2, 15000, "active", 0, 0);
-new CreatePlayer("Happy 8", 3, 15000, "active", 0, 0);
-new CreatePlayer("港大美女", 4, 15000, "active", 0, 0);

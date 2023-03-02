@@ -1,5 +1,7 @@
 var places = [];
 var speed = 300;
+var playerTurnIndex = 1;
+
 function CreateBox(index, name, level, value, owner) {
   this.index = index;
   this.name = name; // property name
@@ -104,6 +106,17 @@ function rollDice() {
   const total = die1 + die2;
   let i = 1;
 
+  // PlayerMoveOnly
+  playerMove(playerTurnIndex);
+  // NextPlayer Here, need to define when nextplayer
+  if (playerTurnIndex < players.length) {
+    playerTurnIndex += 1;
+  } else {
+    playerTurnIndex = 1;
+  }
+  document.getElementById("playernow").innerText =
+    players[playerTurnIndex - 1].name;
+
   function playerMove(index) {
     setTimeout(function () {
       if (players[index - 1].position < 39) {
@@ -124,11 +137,10 @@ function rollDice() {
         .appendChild(node);
       i++;
       if (i <= total) {
-        playerMove(1);
+        playerMove(index);
       }
     }, speed);
   }
-  playerMove(1);
 
   // Return an object containing the values of both dice and their total
   return {
@@ -157,6 +169,7 @@ function rollAndDisplayDice() {
   diceContainer.appendChild(die2Img);
 }
 
+<<<<<<< HEAD
 var players = []
 function CreatePlayer(name, order, money, state, stop, img, position){
   this.name = name //名字
@@ -173,3 +186,15 @@ new CreatePlayer("Nana", 1, 15000, "active", 0, 'img/player1.png', 0)
 new CreatePlayer("亞視一姐", 2, 15000, "active", 0, 'img/player2.png', 0)
 new CreatePlayer("Happy 8", 3, 15000, "active", 0, 'img/player3.png', 0)
 new CreatePlayer("港大美女", 4, 15000, "active", 0, 'img/player4.png', 0)
+=======
+//Controlling Speed
+function speedControl() {
+  if (speed == 300) {
+    speed = 1;
+    document.getElementById("speedControlBtn").innerText = "加速遊戲：快";
+  } else {
+    speed = 300;
+    document.getElementById("speedControlBtn").innerText = "加速遊戲：正常";
+  }
+}
+>>>>>>> 472ca2bcfb469568062bde5c1fe693e5622f97ed

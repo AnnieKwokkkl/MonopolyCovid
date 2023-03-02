@@ -549,6 +549,6 @@ body {
   color: #0072bc;
 }
 
-#player1Info {
-  border: 5px solid #0072bc;
+.currentPlayerBorder {
+  border: 5px solid #0072bc !important;
 }

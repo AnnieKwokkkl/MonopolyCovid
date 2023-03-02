@@ -43,6 +43,10 @@ function startGame() {
   document.querySelector("#player4Name").innerText = player4Name;
   document.querySelector(".startPage").classList.add("hide");
   document.getElementById("playernow").innerText = players[0].name;
+  //Add Current Player Border (Right Bottom)
+  document
+    .getElementById("player" + playerTurnIndex + "Info")
+    .classList.add("currentPlayerBorder");
   for (i = 1; i <= players.length; i++) {
     const node = document.createElement("div");
     node.setAttribute("id", `player${i}Chess`);
@@ -108,7 +112,17 @@ function rollDice() {
 
   // PlayerMoveOnly
   playerMove(playerTurnIndex);
+  // // Destination
+  // setTimeout(() => {
+  //   let currentPlace = places[players[playerTurnIndex - 1].position];
+  //   if (currentPlace.level != 0 && currentPlace.owner == null) {
+  //     console.log("test");
+  //   }
+  // }, 1000);
   // NextPlayer Here, need to define when nextplayer
+  document
+    .getElementById("player" + playerTurnIndex + "Info")
+    .classList.remove("currentPlayerBorder");
   if (playerTurnIndex < players.length) {
     playerTurnIndex += 1;
   } else {
@@ -116,6 +130,9 @@ function rollDice() {
   }
   document.getElementById("playernow").innerText =
     players[playerTurnIndex - 1].name;
+  document
+    .getElementById("player" + playerTurnIndex + "Info")
+    .classList.add("currentPlayerBorder");
 
   function playerMove(index) {
     setTimeout(function () {
@@ -173,9 +190,9 @@ function rollAndDisplayDice() {
 function speedControl() {
   if (speed == 300) {
     speed = 1;
-    document.getElementById("speedControlBtn").innerText = "加速遊戲：快";
+    document.getElementById("speedControlBtn").innerText = "遊戲速度：超快";
   } else {
     speed = 300;
-    document.getElementById("speedControlBtn").innerText = "加速遊戲：正常";
+    document.getElementById("speedControlBtn").innerText = "遊戲速度：正常";
   }
 }

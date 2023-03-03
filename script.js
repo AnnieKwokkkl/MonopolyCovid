@@ -169,24 +169,6 @@ function rollAndDisplayDice() {
   diceContainer.appendChild(die2Img);
 }
 
-<<<<<<< HEAD
-var players = []
-function CreatePlayer(name, order, money, state, stop, img, position){
-  this.name = name //名字
-  this.order = order //行進順序
-  this.money = money //目前持有金錢
-  this.state = state //狀態：活躍或破產
-  this.stop = stop //隔離天數
-  this.img = img //角色棋子圖片
-  this.position = position //當前位置
-  players.push(this)
-}
-
-new CreatePlayer("Nana", 1, 15000, "active", 0, 'img/player1.png', 0)
-new CreatePlayer("亞視一姐", 2, 15000, "active", 0, 'img/player2.png', 0)
-new CreatePlayer("Happy 8", 3, 15000, "active", 0, 'img/player3.png', 0)
-new CreatePlayer("港大美女", 4, 15000, "active", 0, 'img/player4.png', 0)
-=======
 //Controlling Speed
 function speedControl() {
   if (speed == 300) {
@@ -197,4 +179,3 @@ function speedControl() {
     document.getElementById("speedControlBtn").innerText = "加速遊戲：正常";
   }
 }
->>>>>>> 472ca2bcfb469568062bde5c1fe693e5622f97ed

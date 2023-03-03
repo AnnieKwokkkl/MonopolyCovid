@@ -17,14 +17,14 @@ function CreateBox(index, name, level, value, owner) {
 }
 
 var players = [];
-function CreatePlayer(name, order, money, state, stop, position) {
+function CreatePlayer(name, index, money, state, stop, position, color) {
   this.name = name; //名字
-  this.order = order; //行進順序
+  this.index = index; //行進順序
   this.money = money; //目前持有金錢
   this.state = state; //狀態：活躍或破產
   this.stop = stop; //隔離天數
   this.position = position; //當前位置
-  this.rollDice = false;
+  this.color = color;
   players.push(this);
 }
 
@@ -33,10 +33,14 @@ function startGame() {
   const player2Name = document.getElementById("typePlayer2Name").value;
   const player3Name = document.getElementById("typePlayer3Name").value;
   const player4Name = document.getElementById("typePlayer4Name").value;
-  new CreatePlayer(player1Name, 1, 15000, "active", 0, 0);
-  new CreatePlayer(player2Name, 2, 15000, "active", 0, 0);
-  new CreatePlayer(player3Name, 3, 15000, "active", 0, 0);
-  new CreatePlayer(player4Name, 4, 15000, "active", 0, 0);
+  new CreatePlayer(player1Name, 1, 15000, "active", 0, 0, "#C66D61");
+  new CreatePlayer(player2Name, 2, 15000, "active", 0, 0, "#E5E7B0");
+  new CreatePlayer(player3Name, 3, 15000, "active", 0, 0, "#BCD8BF");
+  new CreatePlayer(player4Name, 4, 15000, "active", 0, 0, "#C6E8FF");
+  document.querySelector(`#player1Money`).innerText = `$${players[0].money}`;
+  document.querySelector(`#player2Money`).innerText = `$${players[1].money}`;
+  document.querySelector(`#player3Money`).innerText = `$${players[2].money}`;
+  document.querySelector(`#player4Money`).innerText = `$${players[3].money}`;
   document.querySelector("#player1Name").innerText = player1Name;
   document.querySelector("#player2Name").innerText = player2Name;
   document.querySelector("#player3Name").innerText = player3Name;
@@ -139,30 +143,15 @@ function rollDice() {
         playerMove(index);
       } else if ((i = total)) {
         //put all the event here;
-        console.log("finished");
-        let currentPlace = places[players[index - 1].position];
+        console.log("finished moving");
+        let currentPlace = places[players[playerTurnIndex - 1].position];
         // if place is property
         if (currentPlace.level != 0 && currentPlace.owner == null) {
-          document.querySelector(".messageBox").classList.add("show");
-          document.querySelector(".messageBoxMiddle").innerText =
-            "請問你要花費$" +
-            currentPlace.value +
-            "來購買" +
-            currentPlace.name +
-            "嗎?";
-          // add 2 buttons
-          document.querySelector(".messageBoxBottom").innerHTML = "";
-          const confirmBtn = document.createElement("button");
-          confirmBtn.classList.add("messageBoxBtn");
-          const confirmBtnDiv = document.createElement("div");
-          confirmBtnDiv.classList.add("confirmBtn");
-          confirmBtnDiv.innerText = "確定";
-          confirmBtn.appendChild(confirmBtnDiv);
-          document.querySelector(".messageBoxBottom").appendChild(confirmBtn);
-          const cancelBtn = document.createElement("button");
-          cancelBtn.classList.add("messageBoxBtn");
-          cancelBtn.innerText = "跳過";
-          document.querySelector(".messageBoxBottom").appendChild(cancelBtn);
+          if (players[playerTurnIndex - 1].money >= currentPlace.value) {
+            askBuyProperty(currentPlace);
+          } else if (players[playerTurnIndex - 1].money < currentPlace.value) {
+            noMoneyBuyProperty(currentPlace);
+          }
         }
       }
     }, speed);
@@ -176,12 +165,82 @@ function rollDice() {
   };
 }
 
+function askBuyProperty(currentPlace) {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(".messageBoxMiddle").innerText =
+    "請問你要花費$" + currentPlace.value + "來購買" + currentPlace.name + "嗎?";
+  // clear all buttons
+  document.querySelector(".messageBoxBottom").innerHTML = "";
+  // confirm button
+  const confirmBtn = document.createElement("button");
+  confirmBtn.classList.add("messageBoxBtn");
+  confirmBtn.addEventListener("click", function () {
+    buyProperty(currentPlace);
+  }); // buyProperty function
+  const confirmBtnDiv = document.createElement("div");
+  confirmBtnDiv.classList.add("confirmBtn");
+  confirmBtnDiv.innerText = "確定";
+  confirmBtn.appendChild(confirmBtnDiv);
+  document.querySelector(".messageBoxBottom").appendChild(confirmBtn);
+  // cancel button
+  const cancelBtn = document.createElement("button");
+  cancelBtn.classList.add("messageBoxBtn");
+  cancelBtn.addEventListener("click", nextPlayer); // nextPlayer function
+  cancelBtn.innerText = "跳過";
+  document.querySelector(".messageBoxBottom").appendChild(cancelBtn);
+}
+
+function buyProperty(property) {
+  property.owner = players[playerTurnIndex - 1].index;
+  players[playerTurnIndex - 1].money -= property.value;
+  document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
+    players[playerTurnIndex - 1].money
+  }`;
+  document.querySelector(`#prop${property.index}`).style.backgroundColor =
+    players[playerTurnIndex - 1].color;
+  buyPropertySuccess(property);
+}
+
+function buyPropertySuccess(property) {
+  document.querySelector(".messageBoxMiddle").innerText =
+    "恭喜你獲得" + property.name + "。";
+  // clear all buttons
+  document.querySelector(".messageBoxBottom").innerHTML = "";
+  // confirm button
+  const confirmBtn = document.createElement("button");
+  confirmBtn.classList.add("messageBoxBtn");
+  confirmBtn.addEventListener("click", nextPlayer); // buyProperty function
+  const confirmBtnDiv = document.createElement("div");
+  confirmBtnDiv.classList.add("confirmBtn");
+  confirmBtnDiv.innerText = "確定";
+  confirmBtn.appendChild(confirmBtnDiv);
+  document.querySelector(".messageBoxBottom").appendChild(confirmBtn);
+}
+
+function noMoneyBuyProperty(property) {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(".messageBoxMiddle").innerText =
+    "你沒有足夠金錢購買" + property.name + "。";
+  // clear all buttons
+  document.querySelector(".messageBoxBottom").innerHTML = "";
+  // confirm button
+  const confirmBtn = document.createElement("button");
+  confirmBtn.classList.add("messageBoxBtn");
+  confirmBtn.addEventListener("click", nextPlayer); // buyProperty function
+  const confirmBtnDiv = document.createElement("div");
+  confirmBtnDiv.classList.add("confirmBtn");
+  confirmBtnDiv.innerText = "確定";
+  confirmBtn.appendChild(confirmBtnDiv);
+  document.querySelector(".messageBoxBottom").appendChild(confirmBtn);
+}
+
 function nextPlayer() {
+  document.querySelector(".messageBox").classList.remove("show");
   document
-    .getElementById("player" + index + "Info")
+    .getElementById("player" + playerTurnIndex + "Info")
     .classList.remove("currentPlayerBorder");
   document
-    .getElementById(`player${index}Chess`)
+    .getElementById(`player${playerTurnIndex}Chess`)
     .classList.remove("currentPlayerZIndex");
   // Start from here: playerTurnIndex = next player
   if (playerTurnIndex < players.length) {

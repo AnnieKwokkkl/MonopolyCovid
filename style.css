@@ -6,6 +6,10 @@ body {
   display: none !important;
 }
 
+.show {
+  display: block !important;
+}
+
 .gameArea {
 }
 
@@ -18,10 +22,6 @@ body {
   display: grid;
   border: 5px solid black;
   padding: 5px;
-}
-
-.show {
-  display: block !important;
 }
 
 .messageBox {

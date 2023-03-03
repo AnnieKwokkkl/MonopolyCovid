@@ -107,6 +107,36 @@ new CreateBox(37, "機會", 0, 0, null);
 new CreateBox(38, "欣澳", 1, 1800, null);
 new CreateBox(39, "奧運", 1, 1800, null);
 
+var fates = []
+function CreateFate(text, value){
+    this.text = text
+    this.value = value
+    fates.push(this)
+}
+
+new CreateFate("獲得消費券$2000。", 2000)
+new CreateFate("網上情緣受騙$1000。", -1000)
+new CreateFate("Nana結婚, Happy8 比人情$1000。", -1000)
+new CreateFate("參加全城造星，交報名費$500。", -500)
+new CreateFate("中六合彩$1000。", 1000)
+new CreateFate("無帶口罩出街，罰款$2000。", -2000)
+new CreateFate("突然受到群眾追捧，接廣告賺取$1000報酬。", 1000)
+new CreateFate("打疫苗抽獎，中獎$500。", 500)
+new CreateFate("疫情下，防疫物資短缺，但人間有情，有人資助你＄1000物資費。", 1000)
+new CreateFate("獲公司邀請出席外國活動，賺取$3000報酬。", 3000)
+new CreateFate("接獲美容公司代言人一職，賺取$2000報酬。", 2000)
+new CreateFate("近來人氣急升，受邀做電影配角，賺取$5000片酬。", 5000)
+new CreateFate("由於公園演出表現凸出，獲紅包$2000。", 2000)
+new CreateFate("社交平台粉絲數量達數萬人，接獲公司贊助$1000。", 1000)
+new CreateFate("今個月減肥成功，獲得公司獎金$1000。", 1000)
+new CreateFate("違反限聚令，罰款$1000。", -1000)
+new CreateFate("口不擇言，導致損失$1500代言報酬。", -1500)
+new CreateFate("恆指暴跌，投資失利，損失$2000。", -2000)
+new CreateFate("去外國旅行，遇上賊人，損失$3000。", -3000)
+new CreateFate("不小心遺失贊助公司衣服，賠償$2000。", -2000)
+new CreateFate("每年身體檢查發現異常，需要花費$1000額外檢查。", -1000)
+new CreateFate("墮入求職陷阱，損失$3000。", -3000)
+
 //Roll two dices area
 function rollDice() {
   // Generate a random number between 1 and 6 for each die
@@ -176,6 +206,20 @@ function rollDice() {
         ) {
           goToJail();
         }
+        // if place is tax-related
+        else if(currentPlace.index == 7 || currentPlace.index == 12 || currentPlace.index == 27 || currentPlace.index == 32){
+            players[playerTurnIndex - 1].money -= currentPlace.value
+            document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
+            players[playerTurnIndex - 1].money}`
+            document.querySelector(".messageBox").classList.add("show")
+            document.querySelector(".messageBoxMiddle").innerText =
+            `你已繳交$${currentPlace.value}${currentPlace.name}。`
+            confirmBtn(nextPlayer)
+        }
+        // if place is chance-related
+        else if (currentPlace.index == 2 || currentPlace.index == 17 || currentPlace.index == 20 || currentPlace.index == 25 || currentPlace.index == 37){
+          Chances()
+        }
       }
     }, speed);
   }
@@ -186,6 +230,17 @@ function rollDice() {
     die2: die2,
     total: total,
   };
+}
+
+function Chances() {
+  const fateIndex = Math.floor(Math.random()*22)
+    players[playerTurnIndex - 1].money += fates[fateIndex].value
+    document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
+    players[playerTurnIndex - 1].money}`
+    document.querySelector(".messageBox").classList.add("show")
+    document.querySelector(".messageBoxMiddle").innerText =
+    `${fates[fateIndex].text}`
+    confirmBtn(nextPlayer)
 }
 
 function payRent(rentReceiver, currentPlace) {

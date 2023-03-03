@@ -14,9 +14,72 @@ body {
 }
 
 .parent {
+  position: relative;
   display: grid;
   border: 5px solid black;
   padding: 5px;
+}
+
+.show {
+  display: block !important;
+}
+
+.messageBox {
+  position: absolute;
+  width: 400px;
+  justify-self: center;
+  align-self: center;
+  padding: 10px;
+  background-color: #d9d9d9;
+  border: 3px solid black;
+  display: none;
+}
+
+.messageBoxTop {
+  width: 390px;
+  min-height: 10px;
+  background-color: #0072bc;
+  color: white;
+  font-weight: 400;
+  padding: 0 5px 0 5px;
+}
+
+.messageBoxMiddle {
+  text-align: center;
+  align-self: center;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 20px;
+}
+
+.messageBoxBottom {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.messageBoxBtn {
+  height: 40px;
+  width: 100px;
+  border: 3px solid black;
+  background-color: #d9d9d9;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.messageBoxBtn:hover {
+  border: 3px solid white;
+  background-color: #0072bc;
+  color: white;
+}
+
+.confirmBtn {
+  border: 3px dashed black;
+}
+
+.messageBoxBtn:hover .confirmBtn {
+  border: 3px dashed white;
 }
 
 .startPage {
@@ -549,6 +612,10 @@ body {
   color: #0072bc;
 }
 
-#player1Info {
-  border: 5px solid #0072bc;
+.currentPlayerBorder {
+  border: 5px solid #0072bc !important;
+}
+
+.currentPlayerZIndex {
+  z-index: 50 !important;
 }

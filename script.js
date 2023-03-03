@@ -43,6 +43,10 @@ function startGame() {
   document.querySelector("#player4Name").innerText = player4Name;
   document.querySelector(".startPage").classList.add("hide");
   document.getElementById("playernow").innerText = players[0].name;
+  //Add Current Player Border (Right Bottom)
+  document
+    .getElementById("player" + playerTurnIndex + "Info")
+    .classList.add("currentPlayerBorder");
   for (i = 1; i <= players.length; i++) {
     const node = document.createElement("div");
     node.setAttribute("id", `player${i}Chess`);
@@ -52,6 +56,8 @@ function startGame() {
     node.appendChild(img);
     document.querySelector(".div0").appendChild(node);
   }
+  // Player 1 Chess on Top
+  document.getElementById(`player1Chess`).classList.add("currentPlayerZIndex");
 }
 
 //Updated by Aqua 02.28 7:00pm
@@ -106,16 +112,9 @@ function rollDice() {
   const total = die1 + die2;
   let i = 1;
 
-  // PlayerMoveOnly
+  // PlayerMove
+  document.getElementById("rolldice").disabled = true;
   playerMove(playerTurnIndex);
-  // NextPlayer Here, need to define when nextplayer
-  if (playerTurnIndex < players.length) {
-    playerTurnIndex += 1;
-  } else {
-    playerTurnIndex = 1;
-  }
-  document.getElementById("playernow").innerText =
-    players[playerTurnIndex - 1].name;
 
   function playerMove(index) {
     setTimeout(function () {
@@ -138,6 +137,33 @@ function rollDice() {
       i++;
       if (i <= total) {
         playerMove(index);
+      } else if ((i = total)) {
+        //put all the event here;
+        console.log("finished");
+        let currentPlace = places[players[index - 1].position];
+        // if place is property
+        if (currentPlace.level != 0 && currentPlace.owner == null) {
+          document.querySelector(".messageBox").classList.add("show");
+          document.querySelector(".messageBoxMiddle").innerText =
+            "請問你要花費$" +
+            currentPlace.value +
+            "來購買" +
+            currentPlace.name +
+            "嗎?";
+          // add 2 buttons
+          document.querySelector(".messageBoxBottom").innerHTML = "";
+          const confirmBtn = document.createElement("button");
+          confirmBtn.classList.add("messageBoxBtn");
+          const confirmBtnDiv = document.createElement("div");
+          confirmBtnDiv.classList.add("confirmBtn");
+          confirmBtnDiv.innerText = "確定";
+          confirmBtn.appendChild(confirmBtnDiv);
+          document.querySelector(".messageBoxBottom").appendChild(confirmBtn);
+          const cancelBtn = document.createElement("button");
+          cancelBtn.classList.add("messageBoxBtn");
+          cancelBtn.innerText = "跳過";
+          document.querySelector(".messageBoxBottom").appendChild(cancelBtn);
+        }
       }
     }, speed);
   }
@@ -148,6 +174,31 @@ function rollDice() {
     die2: die2,
     total: total,
   };
+}
+
+function nextPlayer() {
+  document
+    .getElementById("player" + index + "Info")
+    .classList.remove("currentPlayerBorder");
+  document
+    .getElementById(`player${index}Chess`)
+    .classList.remove("currentPlayerZIndex");
+  // Start from here: playerTurnIndex = next player
+  if (playerTurnIndex < players.length) {
+    playerTurnIndex += 1;
+  } else {
+    playerTurnIndex = 1;
+  }
+  // change 目前玩家 and right bottom border
+  document.getElementById("playernow").innerText =
+    players[playerTurnIndex - 1].name;
+  document
+    .getElementById("player" + playerTurnIndex + "Info")
+    .classList.add("currentPlayerBorder");
+  document
+    .getElementById(`player${playerTurnIndex}Chess`)
+    .classList.add("currentPlayerZIndex");
+  document.getElementById("rolldice").disabled = false; // enable rolldice button
 }
 
 function rollAndDisplayDice() {
@@ -173,9 +224,9 @@ function rollAndDisplayDice() {
 function speedControl() {
   if (speed == 300) {
     speed = 1;
-    document.getElementById("speedControlBtn").innerText = "加速遊戲：快";
+    document.getElementById("speedControlBtn").innerText = "遊戲速度：超快";
   } else {
     speed = 300;
-    document.getElementById("speedControlBtn").innerText = "加速遊戲：正常";
+    document.getElementById("speedControlBtn").innerText = "遊戲速度：正常";
   }
 }

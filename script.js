@@ -66,7 +66,7 @@ function startGame() {
 }
 
 //Updated by Aqua 02.28 7:00pm
-new CreateBox(0, "GO", 0, 2000, null);
+new CreateBox(0, "起點", 0, 2000, null);
 new CreateBox(1, "將軍澳", 1, 1500, null);
 new CreateBox(2, "機會", 0, 0, null);
 new CreateBox(3, "愉景灣", 1, 2500, null);
@@ -140,6 +140,7 @@ function rollDice() {
         .querySelector(`.div${players[index - 1].position}`)
         .appendChild(node);
       i++;
+      checkPassGo();
       if (i <= total) {
         // FOR DEV
         playerMove(index);
@@ -170,11 +171,21 @@ function rollDice() {
           else if (players[rentReceiver - 1].state == "jail") {
             showNoPayRent(rentReceiver);
           }
-        } else if (
+        }
+        // if player in go to jail box
+        else if (
           currentPlace.index == 10 &&
           players[playerTurnIndex - 1].state == "active"
         ) {
           goToJail();
+        }
+        // if
+        else if (currentPlace.index == 30) {
+          nothingHappen(currentPlace);
+        }
+        // if start (GO)
+        else if (currentPlace.index == 0) {
+          nothingHappen(currentPlace);
         }
       }
     }, speed);
@@ -186,6 +197,15 @@ function rollDice() {
     die2: die2,
     total: total,
   };
+}
+
+function checkPassGo() {
+  if (players[playerTurnIndex - 1].position == 0) {
+    players[playerTurnIndex - 1].money += 2000;
+    document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
+      players[playerTurnIndex - 1].money
+    }`;
+  }
 }
 
 function payRent(rentReceiver, currentPlace) {
@@ -200,7 +220,9 @@ function payRent(rentReceiver, currentPlace) {
     rent = currentPlace.value * 2;
   }
   players[playerTurnIndex - 1].money -= rent;
+  players[playerTurnIndex - 1].propValue -= rent;
   players[rentReceiver - 1].money += rent;
+  players[rentReceiver - 1].propValue -= rent;
   document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
     players[playerTurnIndex - 1].money
   }`;
@@ -223,6 +245,14 @@ function showNoPayRent(rentReceiver) {
   document.querySelector(".messageBoxMiddle").innerText = `${
     players[rentReceiver - 1].name
   }正在隔離，不用交租。`;
+  confirmBtn(nextPlayer);
+}
+
+function nothingHappen(currentPlace) {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(
+    ".messageBoxMiddle"
+  ).innerText = `你現正在${currentPlace.name}，沒事發生。`;
   confirmBtn(nextPlayer);
 }
 

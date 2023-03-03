@@ -1,13 +1,14 @@
 var places = [];
-var speed = 300;
+var speed = 1; // 300
 var playerTurnIndex = 1;
 
-function CreateBox(index, name, level, value, owner) {
+function CreateBox(index, name, level, value, owner, propValue) {
   this.index = index;
   this.name = name; // property name
   this.level = level; // property level (0 = not property)
   this.value = value; // (property value)
   this.owner = owner; // (property owner)
+  this.propValue = this.propValue;
   if (this.level != 0) {
     //add property name to html
     this.node = document.querySelector(".div" + index);
@@ -19,9 +20,9 @@ function CreateBox(index, name, level, value, owner) {
 var players = [];
 function CreatePlayer(name, index, money, state, stop, position, color) {
   this.name = name; //名字
-  this.index = index; //行進順序
+  this.index = index; //index
   this.money = money; //目前持有金錢
-  this.state = state; //狀態：活躍或破產
+  this.state = state; // active / jail / bankrupt
   this.stop = stop; //隔離天數
   this.position = position; //當前位置
   this.color = color;
@@ -140,18 +141,40 @@ function rollDice() {
         .appendChild(node);
       i++;
       if (i <= total) {
+        // FOR DEV
         playerMove(index);
       } else if ((i = total)) {
+        // FOR DEV
         //put all the event here;
         console.log("finished moving");
         let currentPlace = places[players[playerTurnIndex - 1].position];
-        // if place is property
+        // if place is property and no one owns it
         if (currentPlace.level != 0 && currentPlace.owner == null) {
+          // if player has enough money to buy the property
           if (players[playerTurnIndex - 1].money >= currentPlace.value) {
             askBuyProperty(currentPlace);
-          } else if (players[playerTurnIndex - 1].money < currentPlace.value) {
+          }
+          // if player does not have enough money to buy the property
+          else if (players[playerTurnIndex - 1].money < currentPlace.value) {
             noMoneyBuyProperty(currentPlace);
           }
+        }
+        // if place is property and someone owns it
+        else if (currentPlace.level != 0 && currentPlace.owner != null) {
+          let rentReceiver = currentPlace.owner;
+          // if rent receiver is active
+          if (players[rentReceiver - 1].state == "active") {
+            payRent(rentReceiver, currentPlace);
+          }
+          // if rent receiver is in jail
+          else if (players[rentReceiver - 1].state == "jail") {
+            showNoPayRent(rentReceiver);
+          }
+        } else if (
+          currentPlace.index == 10 &&
+          players[playerTurnIndex - 1].state == "active"
+        ) {
+          goToJail();
         }
       }
     }, speed);
@@ -165,29 +188,64 @@ function rollDice() {
   };
 }
 
+function payRent(rentReceiver, currentPlace) {
+  let rent = 0;
+  if (currentPlace.level == 1) {
+    rent = currentPlace.value * (1 / 5);
+  } else if (currentPlace.level == 2) {
+    rent = currentPlace.value * (1 / 2);
+  } else if (currentPlace.level == 3) {
+    rent = currentPlace.value;
+  } else if (currentPlace.level == 4) {
+    rent = currentPlace.value * 2;
+  }
+  players[playerTurnIndex - 1].money -= rent;
+  players[rentReceiver - 1].money += rent;
+  document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
+    players[playerTurnIndex - 1].money
+  }`;
+  document.querySelector(`#player${rentReceiver}Money`).innerText = `$${
+    players[rentReceiver - 1].money
+  }`;
+  showPayRent(rentReceiver, rent);
+}
+
+function showPayRent(rentReceiver, rent) {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(
+    ".messageBoxMiddle"
+  ).innerText = `你已交$${rent}租金給${players[rentReceiver - 1].name}。`;
+  confirmBtn(nextPlayer);
+}
+
+function showNoPayRent(rentReceiver) {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(".messageBoxMiddle").innerText = `${
+    players[rentReceiver - 1].name
+  }正在隔離，不用交租。`;
+  confirmBtn(nextPlayer);
+}
+
+function goToJail() {
+  players[playerTurnIndex - 1].stop += 4;
+  players[playerTurnIndex - 1].state = "jail";
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(
+    ".messageBoxMiddle"
+  ).innerText = `你已確診新冠，請入住糟糕灣隔離${
+    players[playerTurnIndex - 1].stop - 1
+  }天。`;
+  confirmBtn(nextPlayer);
+}
+
 function askBuyProperty(currentPlace) {
   document.querySelector(".messageBox").classList.add("show");
   document.querySelector(".messageBoxMiddle").innerText =
     "請問你要花費$" + currentPlace.value + "來購買" + currentPlace.name + "嗎?";
-  // clear all buttons
-  document.querySelector(".messageBoxBottom").innerHTML = "";
-  // confirm button
-  const confirmBtn = document.createElement("button");
-  confirmBtn.classList.add("messageBoxBtn");
-  confirmBtn.addEventListener("click", function () {
+  confirmBtn(function () {
     buyProperty(currentPlace);
-  }); // buyProperty function
-  const confirmBtnDiv = document.createElement("div");
-  confirmBtnDiv.classList.add("confirmBtn");
-  confirmBtnDiv.innerText = "確定";
-  confirmBtn.appendChild(confirmBtnDiv);
-  document.querySelector(".messageBoxBottom").appendChild(confirmBtn);
-  // cancel button
-  const cancelBtn = document.createElement("button");
-  cancelBtn.classList.add("messageBoxBtn");
-  cancelBtn.addEventListener("click", nextPlayer); // nextPlayer function
-  cancelBtn.innerText = "跳過";
-  document.querySelector(".messageBoxBottom").appendChild(cancelBtn);
+  });
+  cancelBtn(nextPlayer);
 }
 
 function buyProperty(property) {
@@ -204,12 +262,23 @@ function buyProperty(property) {
 function buyPropertySuccess(property) {
   document.querySelector(".messageBoxMiddle").innerText =
     "恭喜你獲得" + property.name + "。";
+  confirmBtn(nextPlayer);
+}
+
+function noMoneyBuyProperty(property) {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(".messageBoxMiddle").innerText =
+    "你沒有足夠金錢購買" + property.name + "。";
+  confirmBtn(nextPlayer);
+}
+
+function confirmBtn(func) {
   // clear all buttons
   document.querySelector(".messageBoxBottom").innerHTML = "";
   // confirm button
   const confirmBtn = document.createElement("button");
   confirmBtn.classList.add("messageBoxBtn");
-  confirmBtn.addEventListener("click", nextPlayer); // buyProperty function
+  confirmBtn.addEventListener("click", func); // confirm function
   const confirmBtnDiv = document.createElement("div");
   confirmBtnDiv.classList.add("confirmBtn");
   confirmBtnDiv.innerText = "確定";
@@ -217,21 +286,12 @@ function buyPropertySuccess(property) {
   document.querySelector(".messageBoxBottom").appendChild(confirmBtn);
 }
 
-function noMoneyBuyProperty(property) {
-  document.querySelector(".messageBox").classList.add("show");
-  document.querySelector(".messageBoxMiddle").innerText =
-    "你沒有足夠金錢購買" + property.name + "。";
-  // clear all buttons
-  document.querySelector(".messageBoxBottom").innerHTML = "";
-  // confirm button
-  const confirmBtn = document.createElement("button");
-  confirmBtn.classList.add("messageBoxBtn");
-  confirmBtn.addEventListener("click", nextPlayer); // buyProperty function
-  const confirmBtnDiv = document.createElement("div");
-  confirmBtnDiv.classList.add("confirmBtn");
-  confirmBtnDiv.innerText = "確定";
-  confirmBtn.appendChild(confirmBtnDiv);
-  document.querySelector(".messageBoxBottom").appendChild(confirmBtn);
+function cancelBtn(func) {
+  const cancelBtn = document.createElement("button");
+  cancelBtn.classList.add("messageBoxBtn");
+  cancelBtn.addEventListener("click", func); // cancel function
+  cancelBtn.innerText = "跳過";
+  document.querySelector(".messageBoxBottom").appendChild(cancelBtn);
 }
 
 function nextPlayer() {
@@ -258,6 +318,25 @@ function nextPlayer() {
     .getElementById(`player${playerTurnIndex}Chess`)
     .classList.add("currentPlayerZIndex");
   document.getElementById("rolldice").disabled = false; // enable rolldice button
+  if (
+    players[playerTurnIndex - 1].state == "jail" &&
+    players[playerTurnIndex - 1].stop != 1
+  ) {
+    document.getElementById("rolldice").disabled = true;
+    players[playerTurnIndex - 1].stop -= 1;
+    showJail();
+  } else if (players[playerTurnIndex - 1].stop == 1) {
+    players[playerTurnIndex - 1].state == "active";
+    players[playerTurnIndex - 1].stop -= 1;
+  }
+}
+
+function showJail() {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(".messageBoxMiddle").innerText = `${
+    players[playerTurnIndex - 1].name
+  } 還需隔離${players[playerTurnIndex - 1].stop}天。`;
+  confirmBtn(nextPlayer);
 }
 
 function rollAndDisplayDice() {

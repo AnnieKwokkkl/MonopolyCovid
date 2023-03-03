@@ -11,19 +11,89 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>疫情版大富翁</title>
   </head>
   <body>
     <div class="gameArea">
+      <div class="startPage">
+        <div class="playerSettings">
+          <h1>歡迎光臨疫情版大富翁</h1>
+          <div class="playerBar">
+            <div class="playerIcon startPagePlayer" style="width: 60px">
+              <img src="./img/player1.png" height="40px" />
+            </div>
+            <label for="player1Name">玩家 1 名稱：</label
+            ><input
+              id="typePlayer1Name"
+              name="player1Name"
+              type="text"
+              maxlength="12"
+            />
+          </div>
+          <div class="playerBar">
+            <div class="playerIcon startPagePlayer" style="width: 60px">
+              <img src="./img/player2.png" height="40px" />
+            </div>
+            <label for="player2Name">玩家 2 名稱：</label
+            ><input
+              id="typePlayer2Name"
+              name="player2Name"
+              type="text"
+              maxlength="12"
+            />
+          </div>
+          <div class="playerBar">
+            <div class="playerIcon startPagePlayer" style="width: 60px">
+              <img src="./img/player3.png" height="40px" />
+            </div>
+            <label for="player3Name">玩家 3 名稱：</label
+            ><input
+              id="typePlayer3Name"
+              name="player3Name"
+              type="text"
+              maxlength="12"
+            />
+          </div>
+          <div class="playerBar">
+            <div class="playerIcon startPagePlayer" style="width: 60px">
+              <img src="./img/player4.png" height="40px" />
+            </div>
+            <label for="player4Name">玩家 4 名稱：</label
+            ><input
+              id="typePlayer4Name"
+              name="player4Name"
+              type="text"
+              maxlength="12"
+            />
+          </div>
+          <button class="startBtn" onclick="startGame()">開始遊戲</button>
+        </div>
+      </div>
       <div class="board">
         <div class="parent">
+          <div class="messageBox">
+            <div class="messageBoxTop">訊息</div>
+            <div class="messageBoxMiddle">殺你一個措手不及</div>
+            <div class="messageBoxBottom">
+              <!-- <button class="messageBoxBtn">
+                <div class="confirmBtn">Test</div></button
+              ><button class="messageBoxBtn">Test</button> -->
+            </div>
+          </div>
           <div class="div0 square corner">
             <div id="gocontainer">
               <img src="./img/GO.svg" />
             </div>
           </div>
           <div class="div1 square horizontal firstRow">
-            <div class="prop propBottom"></div>
+            <div id="prop1" class="prop propBottom"></div>
+            <div class="property-popup">
+              <div class="propertyheader">
+              <div class="property-name">將軍澳</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div2 squareh horizontal firstRow">
             <div class="containerh">
@@ -31,16 +101,44 @@
             </div>
           </div>
           <div class="div3 square horizontal firstRow">
-            <div class="prop propBottom"></div>
+            <div id="prop3" class="prop propBottom"></div>
+            <div class="property-popup">
+              <div class="propertyheader">
+              <div class="property-name">將軍澳</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div4 square horizontal firstRow">
-            <div class="prop propBottom"></div>
+            <div id="prop4" class="prop propBottom"></div>
+            <div class="property-popup">
+              <div class="propertyheader">
+              <div class="property-name">將軍澳</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div5 square horizontal firstRow">
-            <div class="prop propBottom"></div>
+            <div id="prop5" class="prop propBottom"></div>
+            <div class="property-popup">
+              <div class="propertyheader">
+              <div class="property-name">將軍澳</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div6 square horizontal firstRow">
-            <div class="prop propBottom"></div>
+            <div id="prop6" class="prop propBottom"></div>
+            <div class="property-popup">
+              <div class="propertyheader">
+              <div class="property-name">將軍澳</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div7 squareh horizontal firstRow">
             <div class="containerh">
@@ -48,10 +146,24 @@
             </div>
           </div>
           <div class="div8 square horizontal firstRow">
-            <div class="prop propBottom"></div>
+            <div id="prop8" class="prop propBottom"></div>
+            <div class="property-popup2">
+              <div class="propertyheader">
+              <div class="property-name">將軍澳</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div9 square horizontal firstRow">
-            <div class="prop propBottom"></div>
+            <div id="prop9" class="prop propBottom"></div>
+            <div class="property-popup2">
+              <div class="propertyheader">
+              <div class="property-name">將軍澳</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div10 squareb corner">
             <div id="jailcontainer">
@@ -59,7 +171,14 @@
             </div>
           </div>
           <div class="div11 square vertical secondRow">
-            <div class="prop propLeft"></div>
+            <div id="prop11" class="prop propLeft"></div>
+            <div class="property-popup3">
+              <div class="propertyheader">
+              <div class="property-name">黃埔</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div12 squarev vertical secondRow">
             <div class="containerv">
@@ -67,16 +186,44 @@
             </div>
           </div>
           <div class="div13 square vertical secondRow">
-            <div class="prop propLeft"></div>
+            <div id="prop13" class="prop propLeft"></div>
+            <div class="property-popup3">
+              <div class="propertyheader">
+              <div class="property-name">黃埔</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div14 square vertical secondRow">
-            <div class="prop propLeft"></div>
+            <div id="prop14" class="prop propLeft"></div>
+            <div class="property-popup3">
+              <div class="propertyheader">
+              <div class="property-name">黃埔</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div15 square vertical secondRow">
-            <div class="prop propLeft"></div>
+            <div id="prop15" class="prop propLeft"></div>
+            <div class="property-popup3">
+              <div class="propertyheader">
+              <div class="property-name">黃埔</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div16 square vertical secondRow">
-            <div class="prop propLeft"></div>
+            <div id="prop16" class="prop propLeft"></div>
+            <div class="property-popup3">
+              <div class="propertyheader">
+              <div class="property-name">黃埔</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div17 squarev vertical secondRow">
             <div class="containerv">
@@ -84,10 +231,24 @@
             </div>
           </div>
           <div class="div18 square vertical secondRow">
-            <div class="prop propLeft"></div>
+            <div id="prop18" class="prop propLeft"></div>
+            <div class="property-popup4">
+              <div class="propertyheader">
+              <div class="property-name">黃埔</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div19 square vertical secondRow">
-            <div class="prop propLeft"></div>
+            <div id="prop19" class="prop propLeft"></div>
+            <div class="property-popup4">
+              <div class="propertyheader">
+              <div class="property-name">黃埔</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div20 square corner">
             <div id="wheelcontainer">
@@ -95,16 +256,44 @@
             </div>
           </div>
           <div class="div21 square horizontal thirdRow">
-            <div class="prop propTop"></div>
+            <div id="prop21" class="prop propTop"></div>
+            <div class="property-popup5">
+              <div class="propertyheader">
+              <div class="property-name">薄扶林</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div22 square horizontal thirdRow">
-            <div class="prop propTop"></div>
+            <div id="prop22" class="prop propTop"></div>
+            <div class="property-popup5">
+              <div class="propertyheader">
+              <div class="property-name">薄扶林</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div23 square horizontal thirdRow">
-            <div class="prop propTop"></div>
+            <div id="prop23" class="prop propTop"></div>
+            <div class="property-popup5">
+              <div class="propertyheader">
+              <div class="property-name">薄扶林</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div24 square horizontal thirdRow">
-            <div class="prop propTop"></div>
+            <div id="prop24" class="prop propTop"></div>
+            <div class="property-popup5">
+              <div class="propertyheader">
+              <div class="property-name">薄扶林</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div25 squareh horizontal thirdRow">
             <div class="containerh">
@@ -112,7 +301,14 @@
             </div>
           </div>
           <div class="div26 square horizontal thirdRow">
-            <div class="prop propTop"></div>
+            <div id="prop26" class="prop propTop"></div>
+            <div class="property-popup5">
+              <div class="propertyheader">
+              <div class="property-name">薄扶林</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div27 squareh horizontal thirdRow">
             <div class="containerh">
@@ -120,10 +316,24 @@
             </div>
           </div>
           <div class="div28 square horizontal thirdRow">
-            <div class="prop propTop"></div>
+            <div id="prop28" class="prop propTop"></div>
+            <div class="property-popup6">
+              <div class="propertyheader">
+              <div class="property-name">薄扶林</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div29 square horizontal thirdRow">
-            <div class="prop propTop"></div>
+            <div id="prop29" class="prop propTop"></div>
+            <div class="property-popup6">
+              <div class="propertyheader">
+              <div class="property-name">薄扶林</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div30 squareb corner">
             <div id="freeparkingcontainer">
@@ -131,24 +341,59 @@
             </div>
           </div>
           <div class="div31 square vertical fourthRow">
-            <div class="prop propRight"></div>
+            <div id="prop31" class="prop propRight"></div>
+            <div class="property-popup7">
+              <div class="propertyheader">
+              <div class="property-name">西營盤</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div32 squarev vertical fourthRow">
-            <div class="containerv">
+            <div id="prop32" class="containerv">
               <img src="./img/luxurytax.svg" />
             </div>
           </div>
           <div class="div33 square vertical fourthRow">
-            <div class="prop propRight"></div>
+            <div id="prop33" class="prop propRight"></div>
+            <div class="property-popup7">
+              <div class="propertyheader">
+              <div class="property-name">西營盤</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div34 square vertical fourthRow">
-            <div class="prop propRight"></div>
+            <div id="prop34" class="prop propRight"></div>
+            <div class="property-popup7">
+              <div class="propertyheader">
+              <div class="property-name">西營盤</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div35 square vertical fourthRow">
-            <div class="prop propRight"></div>
+            <div id="prop35" class="prop propRight"></div>
+            <div class="property-popup7">
+              <div class="propertyheader">
+              <div class="property-name">西營盤</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div36 square vertical fourthRow">
-            <div class="prop propRight"></div>
+            <div id="prop36" class="prop propRight"></div>
+            <div class="property-popup7">
+              <div class="propertyheader">
+              <div class="property-name">西營盤</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div37 squarev vertical fourthRow">
             <div class="containerv">
@@ -156,10 +401,24 @@
             </div>
           </div>
           <div class="div38 square vertical fourthRow">
-            <div class="prop propRight"></div>
+            <div id="prop38" class="prop propRight"></div>
+            <div class="property-popup8">
+              <div class="propertyheader">
+              <div class="property-name">西營盤</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div39 square vertical fourthRow">
-            <div class="prop propRight"></div>
+            <div id="prop39" class="prop propRight"></div>
+            <div class="property-popup8">
+              <div class="propertyheader">
+              <div class="property-name">西營盤</div>
+            </div>
+              <div class="property-price">$350</div>
+              <div class="property-description">資產總值：$1500 | 租金：$500 </div>
+            </div>
           </div>
           <div class="div40">
             <div>
@@ -176,7 +435,9 @@
 
         <div class="side">
           <div class="controlBar">
-            <button id="speedControlBtn">加速遊戲節奏</button>
+            <button id="speedControlBtn" onclick="speedControl()">
+              遊戲速度：正常
+            </button>
             <button id="instructionBtn">規則介紹</button>
           </div>
 
@@ -209,29 +470,29 @@
               <div class="playerIcon">
                 <img src="./img/player1.png" height="40px" />
               </div>
-              <div class="playerName">Nana</div>
-              <div class="playerMoney">$15000</div>
+              <div id="player1Name" class="playerName">Nana</div>
+              <div id="player1Money" class="playerMoney">$15000</div>
             </div>
             <div id="player2Info" class="playerInfo">
               <div class="playerIcon">
                 <img src="./img/player2.png" height="40px" />
               </div>
-              <div class="playerName">亞視一姐</div>
-              <div class="playerMoney">$15000</div>
+              <div id="player2Name" class="playerName">亞視一姐</div>
+              <div id="player2Money" class="playerMoney">$15000</div>
             </div>
             <div id="player3Info" class="playerInfo">
               <div class="playerIcon">
                 <img src="./img/player3.png" height="40px" />
               </div>
-              <div class="playerName">Happy 8</div>
-              <div class="playerMoney">$15000</div>
+              <div id="player3Name" class="playerName">Happy 8</div>
+              <div id="player3Money" class="playerMoney">$15000</div>
             </div>
             <div id="player4Info" class="playerInfo">
               <div class="playerIcon">
                 <img src="./img/player4.png" height="40px" />
               </div>
-              <div class="playerName">港大美女</div>
-              <div class="playerMoney">$15000</div>
+              <div id="player4Name" class="playerName">港大美女</div>
+              <div id="player4Money" class="playerMoney">$15000</div>
             </div>
           </div>
         </div>

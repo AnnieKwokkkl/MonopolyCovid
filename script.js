@@ -196,21 +196,28 @@ function rollDice() {
         // if place is property and someone owns it
         else if (currentPlace.level != 0 && currentPlace.owner != null) {
           let rentReceiver = currentPlace.owner;
-          // if rent receiver is active
-          if (players[rentReceiver - 1].state == "active") {
-            payRent(rentReceiver, currentPlace);
-          }
-          // if rent receiver is in jail
-          else if (players[rentReceiver - 1].state == "jail") {
-            showNoPayRent(rentReceiver);
+          // if rent receiver is not himself
+          if (rentReceiver != playerTurnIndex) {
+            // if rent receiver is active
+            if (players[rentReceiver - 1].state == "active") {
+              payRent(rentReceiver, currentPlace);
+            }
+            // if rent receiver is in jail
+            else if (players[rentReceiver - 1].state == "jail") {
+              showNoPayRent(rentReceiver);
+            }
           }
         }
         // if player in go to jail box
         else if (
-          currentPlace.index == 10 &&
+          currentPlace.index == 30 &&
           players[playerTurnIndex - 1].state == "active"
         ) {
           goToJail();
+        }
+        // if free parking
+        else if (currentPlace.index == 10) {
+          nothingHappen(currentPlace);
         }
         // if place is tax-related
         else if (
@@ -239,13 +246,9 @@ function rollDice() {
         ) {
           Chances();
         }
-        // if free parking
-        else if (currentPlace.index == 30) {
-          nothingHappen(currentPlace);
-        }
         // if start (GO)
         else if (currentPlace.index == 0) {
-          nothingHappen(currentPlace);
+          standGo(currentPlace);
         }
       }
     }, speed);
@@ -266,6 +269,12 @@ function checkPassGo() {
       players[playerTurnIndex - 1].money
     }`;
   }
+}
+
+function standGo() {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(".messageBoxMiddle").innerText = `你現正在起點。`;
+  confirmBtn(nextPlayer);
 }
 
 function Chances() {
@@ -429,8 +438,8 @@ function nextPlayer() {
     players[playerTurnIndex - 1].stop -= 1;
     showJail();
   } else if (players[playerTurnIndex - 1].stop == 1) {
-    players[playerTurnIndex - 1].state == "active";
     players[playerTurnIndex - 1].stop -= 1;
+    players[playerTurnIndex - 1].state = "active";
   }
 }
 

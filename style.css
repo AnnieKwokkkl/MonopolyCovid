@@ -602,7 +602,7 @@ body {
   padding: 10px;
   background-color: white;
   width: 280px;
-  height: 290px;
+  height: 220px;
   border-radius: 10px;
   overflow-y: scroll;
 }
@@ -626,19 +626,17 @@ body {
   padding: 20px 10px 20px 10px;
   background-color: white;
   width: 280px;
-  height: 340px;
+  height: 420px;
   border-radius: 10px;
 }
 
 #playercolbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border: 5px solid #ffffff;
-  border-radius: 5px;
-  padding: 0px;
   margin-bottom: 15px;
   font-size: 15px;
+  color: #0072bc;
+  font-weight: 700;
 }
 
 .playerInfo {
@@ -647,13 +645,15 @@ body {
   align-items: center;
   border: 5px solid #ffffff;
   border-radius: 5px;
-  padding: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
   margin-bottom: 15px;
-  font-size: 10px;
+  font-size: 15px;
 }
 
-.playerInfo > .playerName{
-  font-size: 50px
+.playerInfo > .playerName {
+  font-size: 50px;
 }
 
 .playerIcon {
@@ -661,8 +661,29 @@ body {
   text-align: center;
 }
 
+.playerIconBar {
+  width: 60px;
+  text-align: center;
+}
+
+#playercol1 {
+  padding-left: 18px;
+}
+#playercol2 {
+  padding-left: 45px;
+}
+#playercol3 {
+  padding-left: 25px;
+}
+
+#playercol4 {
+  padding-left: 10px;
+}
+
 .playerMoney {
+  text-align: center;
   color: #0072bc;
+  width: 50px;
 }
 
 .currentPlayerBorder {
@@ -897,14 +918,32 @@ body {
 
 .property-price {
   font-size: 14px;
-  color: #888;
+  color: #000000;
   position: relative;
   margin-top: 50px;
   margin-bottom: 5px;
+  font-weight: 600;
 }
 
 .property-description {
   font-size: 12px;
   color: #555;
   position: relative;
+  font-size: 13px;
+}
+
+.property-price {
+  padding-top: 7px;
+}
+
+.property-lv1-rent,
+.property-lv2-rent,
+.property-lv3-rent,
+.property-lv4-rent {
+  color: #bbbbbb;
+}
+
+.current-lv-rent {
+  color: #333 !important;
+  font-weight: 600;
 }

@@ -2,7 +2,7 @@ var places = [];
 var speed = 1; // 300
 var playerTurnIndex = 1;
 
-function CreateBox(index, name, level, value, owner, propValue) {
+function CreateBox(index, name, level, value, owner) {
   this.index = index;
   this.name = name; // property name
   this.level = level; // property level (0 = not property)
@@ -34,10 +34,10 @@ function startGame() {
   const player2Name = document.getElementById("typePlayer2Name").value;
   const player3Name = document.getElementById("typePlayer3Name").value;
   const player4Name = document.getElementById("typePlayer4Name").value;
-  new CreatePlayer(player1Name, 1, 15000, "active", 0, 0, "#C66D61");
-  new CreatePlayer(player2Name, 2, 15000, "active", 0, 0, "#E5E7B0");
-  new CreatePlayer(player3Name, 3, 15000, "active", 0, 0, "#BCD8BF");
-  new CreatePlayer(player4Name, 4, 15000, "active", 0, 0, "#C6E8FF");
+  new CreatePlayer(player1Name, 1, 15000, "active", 0, 0, "#EF847C");
+  new CreatePlayer(player2Name, 2, 15000, "active", 0, 0, "#DDD05B");
+  new CreatePlayer(player3Name, 3, 15000, "active", 0, 0, "#97BC9A");
+  new CreatePlayer(player4Name, 4, 15000, "active", 0, 0, "#75C3D8");
   document.querySelector(`#player1Money`).innerText = `$${players[0].money}`;
   document.querySelector(`#player2Money`).innerText = `$${players[1].money}`;
   document.querySelector(`#player3Money`).innerText = `$${players[2].money}`;
@@ -63,6 +63,7 @@ function startGame() {
   }
   // Player 1 Chess on Top
   document.getElementById(`player1Chess`).classList.add("currentPlayerZIndex");
+  addPropInfo();
 }
 
 //Updated by Aqua 02.28 7:00pm
@@ -360,13 +361,70 @@ function askBuyProperty(currentPlace) {
   cancelBtn(nextPlayer);
 }
 
+function addPropInfo() {
+  for (i = 0; i < places.length; i++) {
+    if (places[i].level == 1) {
+      const parent = document.querySelector(`.div${i}`);
+      parent.querySelector(`.property-name`).innerText = places[i].name;
+      parent.querySelector(
+        `.property-price`
+      ).innerText = `地價：$${places[i].value}`;
+      parent.querySelector(`.property-owner`).innerText = `地主：無`;
+      parent.querySelector(
+        `.property-value`
+      ).innerText = `目前物業總值：$${places[i].value}`;
+      parent
+        .querySelector(`.property-lv1-rent`)
+        .classList.add("current-lv-rent");
+      parent.querySelector(`.property-lv1-rent`).innerText = `1等租金：$${
+        places[i].value * (1 / 5)
+      }`;
+      parent.querySelector(`.property-lv2-rent`).innerText = `2等租金：$${
+        places[i].value * (1 / 2)
+      }`;
+      parent.querySelector(
+        `.property-lv3-rent`
+      ).innerText = `3等租金：$${places[i].value}`;
+      parent.querySelector(`.property-lv4-rent`).innerText = `4等租金：$${
+        places[i].value * 2
+      }`;
+    }
+  }
+}
+
+{
+  /* <div class="property-popup">
+              <div class="propertyheader">
+                <div class="property-name">將軍澳</div>
+              </div>
+              <div class="property-price">地價：$5000</div>
+              <div class="property-description">
+                <div class="property-owner">地主：無</div>
+                <div class="property-value">目前物業總值：$5000</div>
+                <div>1等租金：$500</div>
+                <div>2等租金：$500</div>
+                <div>3等租金：$500</div>
+                <div>4等租金：$500</div>
+              </div>
+            </div> */
+}
+
 function buyProperty(property) {
   property.owner = players[playerTurnIndex - 1].index;
   players[playerTurnIndex - 1].money -= property.value;
+  // change hover box
+  const parentnode = document.querySelector(`.div${property.index}`);
+  parentnode.querySelector(`.property-owner`).innerText = `地主：${
+    players[playerTurnIndex - 1].name
+  }`;
+  // change player box info
   document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
     players[playerTurnIndex - 1].money
   }`;
   document.querySelector(`#prop${property.index}`).style.backgroundColor =
+    players[playerTurnIndex - 1].color;
+  const parent = document.querySelector(`.div${property.index}`);
+  parent.querySelector(`.propertyheader`).style.backgroundColor =
     players[playerTurnIndex - 1].color;
   buyPropertySuccess(property);
 }

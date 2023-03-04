@@ -10,7 +10,8 @@ body {
   display: block !important;
 }
 
-.gameArea {}
+.gameArea {
+}
 
 .board {
   display: flex;
@@ -512,7 +513,8 @@ body {
   flex-direction: row;
 }
 
-.propertyName {}
+.propertyName {
+}
 
 .propBottom {
   width: 100%;

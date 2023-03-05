@@ -73,6 +73,60 @@
           <button class="startBtn" onclick="startGame()">開始遊戲</button>
         </div>
       </div>
+      <div class="resultPage hide">
+        <div class="resultBox">
+          <div style="font-size: 24px">遊戲結果</div>
+          <div class="longResult">詳情如下:</div>
+          <div class="playerResultBigBox">
+            <div class="playercolbar">
+              <div class="playercol1">玩家</div>
+              <div class="playercol2">現金</div>
+              <div class="playercol3">物業總值</div>
+              <div class="playercol4">資產總值</div>
+            </div>
+            <div id="player1EndInfo" class="playerInfo">
+              <div class="playerIconBar">
+                <img src="./img/player1.png" height="40px" />
+                <div class="playerName">Nana</div>
+              </div>
+              <div class="playerMoney playerEndMoney">$15000</div>
+              <div class="playerMoney playerEndPropValue">$0</div>
+              <div class="playerMoney playerEndTotalValue">$15000</div>
+            </div>
+            <div id="player2EndInfo" class="playerInfo">
+              <div class="playerIconBar">
+                <img src="./img/player2.png" height="40px" />
+                <div class="playerName">亞視一姐</div>
+              </div>
+              <div class="playerMoney playerEndMoney">$15000</div>
+              <div class="playerMoney playerEndPropValue">$0</div>
+              <div class="playerMoney playerEndTotalValue">$15000</div>
+            </div>
+            <div id="player3EndInfo" class="playerInfo">
+              <div class="playerIconBar">
+                <img src="./img/player3.png" height="40px" />
+                <div class="playerName">Happy 8</div>
+              </div>
+              <div class="playerMoney playerEndMoney">$15000</div>
+              <div class="playerMoney playerEndPropValue">$0</div>
+              <div class="playerMoney playerEndTotalValue">$15000</div>
+            </div>
+            <div id="player4EndInfo" class="playerInfo">
+              <div class="playerIconBar">
+                <img src="./img/player4.png" height="40px" />
+                <div class="playerName">港大美女</div>
+              </div>
+              <div class="playerMoney playerEndMoney">$15000</div>
+              <div class="playerMoney playerEndPropValue">$0</div>
+              <div class="playerMoney playerEndTotalValue">$15000</div>
+            </div>
+          </div>
+          <button class="restartBtn" onclick="window.location.reload()">
+            重新開始
+          </button>
+        </div>
+      </div>
+
       <div class="board">
         <div class="parent">
           <div class="messageBox">
@@ -91,6 +145,7 @@
           </div>
           <div class="div1 square horizontal firstRow">
             <div id="prop1" class="prop propBottom"></div>
+            <div class="levelup"></div>
             <div class="property-popup">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -113,6 +168,7 @@
           </div>
           <div class="div3 square horizontal firstRow">
             <div id="prop3" class="prop propBottom"></div>
+            <div class="levelup"></div>
             <div class="property-popup">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -130,6 +186,7 @@
           </div>
           <div class="div4 square horizontal firstRow">
             <div id="prop4" class="prop propBottom"></div>
+            <div class="levelup"></div>
             <div class="property-popup">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -147,6 +204,7 @@
           </div>
           <div class="div5 square horizontal firstRow">
             <div id="prop5" class="prop propBottom"></div>
+            <div class="levelup"></div>
             <div class="property-popup">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -164,6 +222,7 @@
           </div>
           <div class="div6 square horizontal firstRow">
             <div id="prop6" class="prop propBottom"></div>
+            <div class="levelup"></div>
             <div class="property-popup">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -186,6 +245,7 @@
           </div>
           <div class="div8 square horizontal firstRow">
             <div id="prop8" class="prop propBottom"></div>
+            <div class="levelup"></div>
             <div class="property-popup2">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -203,6 +263,7 @@
           </div>
           <div class="div9 square horizontal firstRow">
             <div id="prop9" class="prop propBottom"></div>
+            <div class="levelup"></div>
             <div class="property-popup2">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -225,6 +286,7 @@
           </div>
           <div class="div11 square vertical secondRow">
             <div id="prop11" class="prop propLeft"></div>
+            <div class="levelup"></div>
             <div class="property-popup3">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -247,6 +309,7 @@
           </div>
           <div class="div13 square vertical secondRow">
             <div id="prop13" class="prop propLeft"></div>
+            <div class="levelup"></div>
             <div class="property-popup3">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -264,6 +327,7 @@
           </div>
           <div class="div14 square vertical secondRow">
             <div id="prop14" class="prop propLeft"></div>
+            <div class="levelup"></div>
             <div class="property-popup3">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -281,6 +345,7 @@
           </div>
           <div class="div15 square vertical secondRow">
             <div id="prop15" class="prop propLeft"></div>
+            <div class="levelup"></div>
             <div class="property-popup3">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -298,6 +363,7 @@
           </div>
           <div class="div16 square vertical secondRow">
             <div id="prop16" class="prop propLeft"></div>
+            <div class="levelup"></div>
             <div class="property-popup3">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -320,6 +386,7 @@
           </div>
           <div class="div18 square vertical secondRow">
             <div id="prop18" class="prop propLeft"></div>
+            <div class="levelup"></div>
             <div class="property-popup4">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -337,6 +404,7 @@
           </div>
           <div class="div19 square vertical secondRow">
             <div id="prop19" class="prop propLeft"></div>
+            <div class="levelup"></div>
             <div class="property-popup4">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -359,6 +427,7 @@
           </div>
           <div class="div21 square horizontal thirdRow">
             <div id="prop21" class="prop propTop"></div>
+            <div class="levelup"></div>
             <div class="property-popup5">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -376,6 +445,7 @@
           </div>
           <div class="div22 square horizontal thirdRow">
             <div id="prop22" class="prop propTop"></div>
+            <div class="levelup"></div>
             <div class="property-popup5">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -393,6 +463,7 @@
           </div>
           <div class="div23 square horizontal thirdRow">
             <div id="prop23" class="prop propTop"></div>
+            <div class="levelup"></div>
             <div class="property-popup5">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -410,6 +481,7 @@
           </div>
           <div class="div24 square horizontal thirdRow">
             <div id="prop24" class="prop propTop"></div>
+            <div class="levelup"></div>
             <div class="property-popup5">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -432,6 +504,7 @@
           </div>
           <div class="div26 square horizontal thirdRow">
             <div id="prop26" class="prop propTop"></div>
+            <div class="levelup"></div>
             <div class="property-popup5">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -454,6 +527,7 @@
           </div>
           <div class="div28 square horizontal thirdRow">
             <div id="prop28" class="prop propTop"></div>
+            <div class="levelup"></div>
             <div class="property-popup6">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -471,6 +545,7 @@
           </div>
           <div class="div29 square horizontal thirdRow">
             <div id="prop29" class="prop propTop"></div>
+            <div class="levelup"></div>
             <div class="property-popup6">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -493,6 +568,7 @@
           </div>
           <div class="div31 square vertical fourthRow">
             <div id="prop31" class="prop propRight"></div>
+            <div class="levelup"></div>
             <div class="property-popup7">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -515,6 +591,7 @@
           </div>
           <div class="div33 square vertical fourthRow">
             <div id="prop33" class="prop propRight"></div>
+            <div class="levelup"></div>
             <div class="property-popup7">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -532,6 +609,7 @@
           </div>
           <div class="div34 square vertical fourthRow">
             <div id="prop34" class="prop propRight"></div>
+            <div class="levelup"></div>
             <div class="property-popup7">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -549,6 +627,7 @@
           </div>
           <div class="div35 square vertical fourthRow">
             <div id="prop35" class="prop propRight"></div>
+            <div class="levelup"></div>
             <div class="property-popup7">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -566,6 +645,7 @@
           </div>
           <div class="div36 square vertical fourthRow">
             <div id="prop36" class="prop propRight"></div>
+            <div class="levelup"></div>
             <div class="property-popup7">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -588,6 +668,7 @@
           </div>
           <div class="div38 square vertical fourthRow">
             <div id="prop38" class="prop propRight"></div>
+            <div class="levelup"></div>
             <div class="property-popup8">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -605,6 +686,7 @@
           </div>
           <div class="div39 square vertical fourthRow">
             <div id="prop39" class="prop propRight"></div>
+            <div class="levelup"></div>
             <div class="property-popup8">
               <div class="propertyheader">
                 <div class="property-name">地名</div>
@@ -643,8 +725,8 @@
 
           <div id="instructionBox">
             <ul>
-              <li>每位玩家起始金額為＄15000。</li>
-              <li>每次路過起點會獲得＄2000。</li>
+              <li>每位玩家起始金額為$15000。</li>
+              <li>每次路過起點會獲得$2000。</li>
               <li>點擊加速按鈕可以使遊戲速度變快，或者恢復原樣。</li>
               <li>點擊骰仔進行遊戲，電腦會為你自動搖骰仔。</li>
               <li>
@@ -655,22 +737,27 @@
                 普通地產：玩家可以自由購買並且升級造房，其他玩家經過你的地產時要向你繳納租金，鼠標放在棋格上會顯示地產詳細信息。
               </li>
               <li>機會：隨機觸發一個好運或者厄運。</li>
-              <li>繳稅：繳納隨機數額的稅。</li>
-              <li>起點：獲得＄2000。</li>
-              <li>監獄：隨機的天數內停止不能行動。</li>
+              <li>繳稅：繳納不同種類的稅會有不同價錢。</li>
+              <li>經過起點：獲得$2000。</li>
+              <li>糟糕灣：停止3回合行動。</li>
               <li>
-                地租機制：一共有四個等級，分別是空地，房子，別墅，酒店。等級越高收的地租越高，對應比率分別是地價的五分之一，二分之一，原價，雙倍價錢。
+                升級機制：玩家踏上屬於自己的物業時可將其升級，物業一共有四個等級，分別是空地，房子(2等)，別墅(3等)，酒店(4等)，升至2等需要地價的五分之一，3等為五分之三，4等為原價。
               </li>
-              <li>破產機制：一旦有玩家的錢低於0，馬上宣告破產，遊戲結束。</li>
+              <li>
+                地租機制：物業1等租金為地價的五分之一，2等為二分之一，3等為原價，4等為雙倍價錢。
+              </li>
+              <li>
+                破產機制：一旦有玩家的現金低於0，需賣出自己的物業，售價為物業總值的80%。當玩家在沒有任何物業時現金仍低於0，將自動申請破產，遊戲結束。
+              </li>
             </ul>
           </div>
 
-          <div id="playerBigBox">
-            <div id="playercolbar">
-              <div id="playercol1">玩家</div>
-              <div id="playercol2">現金</div>
-              <div id="playercol3">物業總值</div>
-              <div id="playercol4">資產總值</div>
+          <div class="playerBigBox">
+            <div class="playercolbar">
+              <div class="playercol1">玩家</div>
+              <div class="playercol2">現金</div>
+              <div class="playercol3">物業總值</div>
+              <div class="playercol4">資產總值</div>
             </div>
             <div id="player1Info" class="playerInfo">
               <div class="playerIconBar">

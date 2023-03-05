@@ -1,14 +1,14 @@
 var places = [];
-var speed = 1; // 300
+var speed = 300;
 var playerTurnIndex = 1;
 
-function CreateBox(index, name, level, value, owner) {
+function CreateBox(index, name, level, value, owner, currentValue) {
   this.index = index;
   this.name = name; // property name
   this.level = level; // property level (0 = not property)
   this.value = value; // (property value)
   this.owner = owner; // (property owner)
-  this.propValue = this.propValue;
+  this.currentValue = value;
   if (this.level != 0) {
     //add property name to html
     this.node = document.querySelector(".div" + index);
@@ -18,7 +18,17 @@ function CreateBox(index, name, level, value, owner) {
 }
 
 var players = [];
-function CreatePlayer(name, index, money, state, stop, position, color) {
+function CreatePlayer(
+  name,
+  index,
+  money,
+  state,
+  stop,
+  position,
+  color,
+  propValue,
+  ownedProp
+) {
   this.name = name; //名字
   this.index = index; //index
   this.money = money; //目前持有金錢
@@ -26,6 +36,8 @@ function CreatePlayer(name, index, money, state, stop, position, color) {
   this.stop = stop; //隔離天數
   this.position = position; //當前位置
   this.color = color;
+  this.propValue = propValue;
+  this.ownedProp = ownedProp;
   players.push(this);
 }
 
@@ -35,23 +47,23 @@ function startGame() {
   var player3Name = document.getElementById("typePlayer3Name").value;
   var player4Name = document.getElementById("typePlayer4Name").value;
   //default name
-  if (player1Name==''){
-    player1Name='Nana'
+  if (player1Name == "") {
+    player1Name = "Nana";
   }
-  if (player2Name==''){
-    player2Name='亞視一姐'
+  if (player2Name == "") {
+    player2Name = "亞視一姐";
   }
-  if (player3Name==''){
-    player3Name='Happy 8'
+  if (player3Name == "") {
+    player3Name = "Happy 8";
   }
-  if (player4Name==''){
-    player4Name='港大美女'
+  if (player4Name == "") {
+    player4Name = "港大美女";
   }
 
-  new CreatePlayer(player1Name, 1, 15000, "active", 0, 0, "#EF847C");
-  new CreatePlayer(player2Name, 2, 15000, "active", 0, 0, "#DDD05B");
-  new CreatePlayer(player3Name, 3, 15000, "active", 0, 0, "#97BC9A");
-  new CreatePlayer(player4Name, 4, 15000, "active", 0, 0, "#75C3D8");
+  new CreatePlayer(player1Name, 1, 15000, "active", 0, 0, "#EF847C", 0, []);
+  new CreatePlayer(player2Name, 2, 15000, "active", 0, 0, "#DDD05B", 0, []);
+  new CreatePlayer(player3Name, 3, 15000, "active", 0, 0, "#97BC9A", 0, []);
+  new CreatePlayer(player4Name, 4, 15000, "active", 0, 0, "#75C3D8", 0, []);
   document.querySelector(`#player1Money`).innerText = `$${players[0].money}`;
   document.querySelector(`#player2Money`).innerText = `$${players[1].money}`;
   document.querySelector(`#player3Money`).innerText = `$${players[2].money}`;
@@ -82,45 +94,45 @@ function startGame() {
 
 //Updated by Aqua 02.28 7:00pm
 new CreateBox(0, "起點", 0, 2000, null);
-new CreateBox(1, "將軍澳", 1, 1500, null);
+new CreateBox(1, "將軍澳", 1, 2000, null);
 new CreateBox(2, "機會", 0, 0, null);
-new CreateBox(3, "愉景灣", 1, 2500, null);
-new CreateBox(4, "東涌", 1, 1000, null);
-new CreateBox(5, "銅鑼灣", 1, 2000, null);
+new CreateBox(3, "愉景灣", 1, 4000, null);
+new CreateBox(4, "東涌", 1, 2500, null);
+new CreateBox(5, "銅鑼灣", 1, 2500, null);
 new CreateBox(6, "黃大仙", 1, 1500, null);
-new CreateBox(7, "港燈", 0, 600, null);
+new CreateBox(7, "電費", 0, 600, null);
 new CreateBox(8, "觀塘", 1, 1500, null);
 new CreateBox(9, "葵涌", 1, 1500, null);
 new CreateBox(10, "免費泊車", 0, 0, null);
-new CreateBox(11, "黃埔", 1, 1800, null);
+new CreateBox(11, "黃埔", 1, 2500, null);
 new CreateBox(12, "入息税", 0, 800, null);
-new CreateBox(13, "藍田", 1, 1300, null);
-new CreateBox(14, "啟德", 1, 1800, null);
-new CreateBox(15, "粉嶺", 1, 1000, null);
-new CreateBox(16, "馬灣", 1, 2000, null);
+new CreateBox(13, "藍田", 1, 1500, null);
+new CreateBox(14, "啟德", 1, 2500, null);
+new CreateBox(15, "粉嶺", 1, 1500, null);
+new CreateBox(16, "馬灣", 1, 4000, null);
 new CreateBox(17, "機會", 0, 0, null);
-new CreateBox(18, "長洲", 1, 1500, null);
-new CreateBox(19, "馬鞍山", 1, 1800, null);
+new CreateBox(18, "長洲", 1, 2000, null);
+new CreateBox(19, "馬鞍山", 1, 2500, null);
 new CreateBox(20, "命運之輪", 0, 0, null);
 new CreateBox(21, "薄扶林", 1, 3000, null);
 new CreateBox(22, "中環", 1, 3000, null);
-new CreateBox(23, "淺水灣", 1, 2500, null);
+new CreateBox(23, "淺水灣", 1, 3200, null);
 new CreateBox(24, "尖沙咀", 1, 3500, null);
 new CreateBox(25, "機會", 0, 0, null);
-new CreateBox(26, "大嶼山", 1, 2500, null);
+new CreateBox(26, "大嶼山", 1, 3000, null);
 new CreateBox(27, "印花稅", 0, 600, null);
-new CreateBox(28, "深井", 1, 1000, null);
-new CreateBox(29, "天水圍", 1, 1000, null);
+new CreateBox(28, "深井", 1, 2500, null);
+new CreateBox(29, "天水圍", 1, 2000, null);
 new CreateBox(30, "入住糟糕灣", 0, 0, null);
-new CreateBox(31, "西營盤", 1, 1200, null);
+new CreateBox(31, "西營盤", 1, 3900, null);
 new CreateBox(32, "奢侈稅", 0, 500, null);
-new CreateBox(33, "北角", 1, 1500, null);
-new CreateBox(34, "太古", 1, 2000, null);
-new CreateBox(35, "利東", 1, 1800, null);
-new CreateBox(36, "康城", 1, 2000, null);
+new CreateBox(33, "北角", 1, 4000, null);
+new CreateBox(34, "太古", 1, 4200, null);
+new CreateBox(35, "利東", 1, 4200, null);
+new CreateBox(36, "康城", 1, 4500, null);
 new CreateBox(37, "機會", 0, 0, null);
-new CreateBox(38, "欣澳", 1, 1800, null);
-new CreateBox(39, "奧運", 1, 1800, null);
+new CreateBox(38, "欣澳", 1, 5000, null);
+new CreateBox(39, "奧運", 1, 6000, null);
 
 var fates = [];
 function CreateFate(text, value) {
@@ -138,7 +150,7 @@ new CreateFate("無帶口罩出街，罰款$2000。", -2000);
 new CreateFate("突然受到群眾追捧，接廣告賺取$1000報酬。", 1000);
 new CreateFate("打疫苗抽獎，中獎$500。", 500);
 new CreateFate(
-  "疫情下，防疫物資短缺，但人間有情，有人資助你＄1000物資費。",
+  "疫情下，防疫物資短缺，但人間有情，有人資助你$1000物資費。",
   1000
 );
 new CreateFate("獲公司邀請出席外國活動，賺取$3000報酬。", 3000);
@@ -195,7 +207,6 @@ function rollDice() {
       } else if ((i = total)) {
         // FOR DEV
         //put all the event here;
-        console.log("finished moving");
         let currentPlace = places[players[playerTurnIndex - 1].position];
         // if place is property and no one owns it
         if (currentPlace.level != 0 && currentPlace.owner == null) {
@@ -209,7 +220,11 @@ function rollDice() {
           }
         }
         // if place is property and someone owns it
-        else if (currentPlace.level != 0 && currentPlace.owner != null) {
+        else if (
+          currentPlace.level != 0 &&
+          currentPlace.owner != null &&
+          currentPlace.owner != playerTurnIndex
+        ) {
           let rentReceiver = currentPlace.owner;
           // if rent receiver is not himself
           if (rentReceiver != playerTurnIndex) {
@@ -221,6 +236,28 @@ function rollDice() {
             else if (players[rentReceiver - 1].state == "jail") {
               showNoPayRent(rentReceiver);
             }
+          }
+        }
+        // if player owns the property
+        else if (playerTurnIndex == currentPlace.owner) {
+          let tolvl2price = currentPlace.value * (1 / 5);
+          let tolvl3price = currentPlace.value * (3 / 5);
+          let tolvl4price = currentPlace.value;
+          // if property level max already
+          if (currentPlace.level == 4) {
+            proplevelmaxed(currentPlace);
+          } // if player have no money to upgrade
+          else if (
+            (currentPlace.level == 1 &&
+              players[playerTurnIndex - 1].money < tolvl2price) ||
+            (currentPlace.level == 2 &&
+              players[playerTurnIndex - 1].money < tolvl3price) ||
+            (currentPlace.level == 3 &&
+              players[playerTurnIndex - 1].money < tolvl4price)
+          ) {
+            nomoneylevelupprop(currentPlace);
+          } else {
+            asklevelupprop(currentPlace, tolvl2price, tolvl3price, tolvl4price);
           }
         }
         // if player in go to jail box
@@ -245,6 +282,12 @@ function rollDice() {
           document.querySelector(
             `#player${playerTurnIndex}Money`
           ).innerText = `$${players[playerTurnIndex - 1].money}`;
+          document.querySelector(
+            `#player${playerTurnIndex}TotalValue`
+          ).innerText = `$${
+            players[playerTurnIndex - 1].money +
+            players[playerTurnIndex - 1].propValue
+          }`;
           document.querySelector(".messageBox").classList.add("show");
           document.querySelector(
             ".messageBoxMiddle"
@@ -283,7 +326,114 @@ function checkPassGo() {
     document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
       players[playerTurnIndex - 1].money
     }`;
+    document.querySelector(
+      `#player${playerTurnIndex}TotalValue`
+    ).innerText = `$${
+      players[playerTurnIndex - 1].money +
+      players[playerTurnIndex - 1].propValue
+    }`;
   }
+}
+
+function asklevelupprop(property, tolvl2price, tolvl3price, tolvl4price) {
+  document.querySelector(".messageBox").classList.add("show");
+  if (property.level == 1) {
+    document.querySelector(".messageBoxMiddle").innerText =
+      "請問你要花費$" +
+      tolvl2price +
+      "來升級" +
+      property.name +
+      "到" +
+      (property.level + 1) +
+      "等嗎?";
+    confirmBtn(function () {
+      levelupprop(property, 2, tolvl2price);
+    });
+    cancelBtn(nextPlayer);
+  } else if (property.level == 2) {
+    document.querySelector(".messageBoxMiddle").innerText =
+      "請問你要花費$" +
+      tolvl3price +
+      "來升級" +
+      property.name +
+      "到" +
+      (property.level + 1) +
+      "等嗎?";
+    confirmBtn(function () {
+      levelupprop(property, 3, tolvl3price);
+    });
+    cancelBtn(nextPlayer);
+  } else if (property.level == 3) {
+    document.querySelector(".messageBoxMiddle").innerText =
+      "請問你要花費$" +
+      tolvl4price +
+      "來升級" +
+      property.name +
+      "到" +
+      (property.level + 1) +
+      "等嗎?";
+    confirmBtn(function () {
+      levelupprop(property, 4, tolvl4price);
+    });
+    cancelBtn(nextPlayer);
+  }
+}
+
+function levelupprop(property, tolvl, lvlupprice) {
+  // calculation
+  players[playerTurnIndex - 1].money -= lvlupprice;
+  players[playerTurnIndex - 1].propValue += lvlupprice;
+  property.currentValue += lvlupprice;
+  property.level += 1;
+  // search div
+  const parentnode = document.querySelector(`.div${property.index}`);
+  // add img
+  parentnode.querySelector(".levelup").innerHTML = `<img src='./img/l${
+    tolvl - 1
+  }.svg' />`;
+  // correct hover box message
+  parentnode.querySelector(
+    ".property-value"
+  ).innerText = `目前物業總值：$${property.currentValue}`;
+  parentnode
+    .querySelector(`.property-lv${tolvl - 1}-rent`)
+    .classList.remove("current-lv-rent");
+  parentnode
+    .querySelector(`.property-lv${tolvl}-rent`)
+    .classList.add("current-lv-rent");
+  // update player info box
+  document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
+    players[playerTurnIndex - 1].money
+  }`;
+  document.querySelector(`#player${playerTurnIndex}PropValue`).innerText = `$${
+    players[playerTurnIndex - 1].propValue
+  }`;
+  document.querySelector(`#player${playerTurnIndex}TotalValue`).innerText = `$${
+    players[playerTurnIndex - 1].money + players[playerTurnIndex - 1].propValue
+  }`;
+  showlevelupprop(property);
+}
+
+function showlevelupprop(property) {
+  document.querySelector(".messageBoxMiddle").innerText =
+    "恭喜" + property.name + "已升級到" + property.level + "等。";
+  confirmBtn(nextPlayer);
+}
+
+function proplevelmaxed(property) {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(
+    ".messageBoxMiddle"
+  ).innerText = `${property.name}已達4等，不能再升級。`;
+  confirmBtn(nextPlayer);
+}
+
+function nomoneylevelupprop(property) {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(
+    ".messageBoxMiddle"
+  ).innerText = `你沒有足夠金錢升級${property.name}。`;
+  confirmBtn(nextPlayer);
 }
 
 function standGo() {
@@ -297,6 +447,9 @@ function Chances() {
   players[playerTurnIndex - 1].money += fates[fateIndex].value;
   document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
     players[playerTurnIndex - 1].money
+  }`;
+  document.querySelector(`#player${playerTurnIndex}TotalValue`).innerText = `$${
+    players[playerTurnIndex - 1].money + players[playerTurnIndex - 1].propValue
   }`;
   document.querySelector(".messageBox").classList.add("show");
   document.querySelector(
@@ -312,19 +465,23 @@ function payRent(rentReceiver, currentPlace) {
   } else if (currentPlace.level == 2) {
     rent = currentPlace.value * (1 / 2);
   } else if (currentPlace.level == 3) {
-    rent = currentPlace.value;
+    rent = currentPlace.value * 1;
   } else if (currentPlace.level == 4) {
     rent = currentPlace.value * 2;
   }
   players[playerTurnIndex - 1].money -= rent;
-  players[playerTurnIndex - 1].propValue -= rent;
   players[rentReceiver - 1].money += rent;
-  players[rentReceiver - 1].propValue -= rent;
   document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
     players[playerTurnIndex - 1].money
   }`;
+  document.querySelector(`#player${playerTurnIndex}TotalValue`).innerText = `$${
+    players[playerTurnIndex - 1].money + players[playerTurnIndex - 1].propValue
+  }`;
   document.querySelector(`#player${rentReceiver}Money`).innerText = `$${
     players[rentReceiver - 1].money
+  }`;
+  document.querySelector(`#player${rentReceiver}TotalValue`).innerText = `$${
+    players[rentReceiver - 1].money + players[rentReceiver - 1].propValue
   }`;
   showPayRent(rentReceiver, rent);
 }
@@ -387,58 +544,48 @@ function addPropInfo() {
       parent.querySelector(
         `.property-value`
       ).innerText = `目前物業總值：$${places[i].value}`;
-      parent
-        .querySelector(`.property-lv1-rent`)
-        .classList.add("current-lv-rent");
       parent.querySelector(`.property-lv1-rent`).innerText = `1等租金：$${
-        places[i].value * (1 / 5)
+        places[i].value * (1 / 10)
       }`;
       parent.querySelector(`.property-lv2-rent`).innerText = `2等租金：$${
+        places[i].value * (1 / 5)
+      }`;
+      parent.querySelector(`.property-lv3-rent`).innerText = `3等租金：$${
         places[i].value * (1 / 2)
       }`;
       parent.querySelector(
-        `.property-lv3-rent`
-      ).innerText = `3等租金：$${places[i].value}`;
-      parent.querySelector(`.property-lv4-rent`).innerText = `4等租金：$${
-        places[i].value * 2
-      }`;
+        `.property-lv4-rent`
+      ).innerText = `4等租金：$${places[i].value}`;
     }
   }
-}
-
-{
-  /* <div class="property-popup">
-              <div class="propertyheader">
-                <div class="property-name">將軍澳</div>
-              </div>
-              <div class="property-price">地價：$5000</div>
-              <div class="property-description">
-                <div class="property-owner">地主：無</div>
-                <div class="property-value">目前物業總值：$5000</div>
-                <div>1等租金：$500</div>
-                <div>2等租金：$500</div>
-                <div>3等租金：$500</div>
-                <div>4等租金：$500</div>
-              </div>
-            </div> */
 }
 
 function buyProperty(property) {
   property.owner = players[playerTurnIndex - 1].index;
   players[playerTurnIndex - 1].money -= property.value;
+  players[playerTurnIndex - 1].propValue += property.value;
+  players[playerTurnIndex - 1].ownedProp.push(property);
   // change hover box
   const parentnode = document.querySelector(`.div${property.index}`);
   parentnode.querySelector(`.property-owner`).innerText = `地主：${
     players[playerTurnIndex - 1].name
   }`;
+  parentnode
+    .querySelector(`.property-lv1-rent`)
+    .classList.add("current-lv-rent");
   // change player box info
   document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
     players[playerTurnIndex - 1].money
   }`;
+  document.querySelector(`#player${playerTurnIndex}PropValue`).innerText = `$${
+    players[playerTurnIndex - 1].propValue
+  }`;
+  document.querySelector(`#player${playerTurnIndex}TotalValue`).innerText = `$${
+    players[playerTurnIndex - 1].money + players[playerTurnIndex - 1].propValue
+  }`;
   document.querySelector(`#prop${property.index}`).style.backgroundColor =
     players[playerTurnIndex - 1].color;
-  const parent = document.querySelector(`.div${property.index}`);
-  parent.querySelector(`.propertyheader`).style.backgroundColor =
+  parentnode.querySelector(`.propertyheader`).style.backgroundColor =
     players[playerTurnIndex - 1].color;
   buyPropertySuccess(property);
 }
@@ -478,40 +625,160 @@ function cancelBtn(func) {
   document.querySelector(".messageBoxBottom").appendChild(cancelBtn);
 }
 
-function nextPlayer() {
-  document.querySelector(".messageBox").classList.remove("show");
-  document
-    .getElementById("player" + playerTurnIndex + "Info")
-    .classList.remove("currentPlayerBorder");
-  document
-    .getElementById(`player${playerTurnIndex}Chess`)
-    .classList.remove("currentPlayerZIndex");
-  // Start from here: playerTurnIndex = next player
-  if (playerTurnIndex < players.length) {
-    playerTurnIndex += 1;
-  } else {
-    playerTurnIndex = 1;
+function askCompulsorySale() {
+  document.querySelector(".messageBox").classList.add("show");
+  document.querySelector(".messageBoxMiddle").innerText =
+    "你的現金少於0，必須選擇下列一個物業出售予政府，售價為物業總值80%。";
+  const propertyBox = document.createElement("div");
+  propertyBox.classList.add("sellPropertyBox");
+  document.querySelector(".messageBoxBottom").innerHTML = "";
+  document.querySelector(".messageBoxBottom").appendChild(propertyBox);
+  const titleLine = document.createElement("div");
+  titleLine.classList.add("sellItemTitleBig");
+  const boxTitleProp = document.createElement("div");
+  boxTitleProp.classList.add("sellItemTitle");
+  boxTitleProp.innerText = "物業";
+  const boxTitleLevel = document.createElement("div");
+  boxTitleLevel.classList.add("sellItemTitle");
+  boxTitleLevel.innerText = "等級";
+  const boxTitleSale = document.createElement("div");
+  boxTitleSale.classList.add("sellItemTitle");
+  boxTitleSale.innerText = "售出所得現金";
+  titleLine.appendChild(boxTitleProp);
+  titleLine.appendChild(boxTitleLevel);
+  titleLine.appendChild(boxTitleSale);
+  propertyBox.appendChild(titleLine);
+  let propName;
+  let propLevel;
+  let propSale;
+  for (i = 0; i < players[playerTurnIndex - 1].ownedProp.length; i++) {
+    propLine = document.createElement("div");
+    propLine.classList.add("sellItemBtn");
+    let property = players[playerTurnIndex - 1].ownedProp[i];
+    propLine.addEventListener("click", function () {
+      confirmSell(property);
+    });
+    propName = document.createElement("div");
+    propName.innerText = players[playerTurnIndex - 1].ownedProp[i].name;
+    propLine.appendChild(propName);
+    propLevel = document.createElement("div");
+    propLevel.innerText = players[playerTurnIndex - 1].ownedProp[i].level;
+    propLine.appendChild(propLevel);
+    propSale = document.createElement("div");
+    propSale.innerText =
+      players[playerTurnIndex - 1].ownedProp[i].currentValue * 0.8;
+    propLine.appendChild(propSale);
+    propertyBox.appendChild(propLine);
   }
-  // change 目前玩家 and right bottom border
-  document.getElementById("playernow").innerText =
-    players[playerTurnIndex - 1].name;
-  document
-    .getElementById("player" + playerTurnIndex + "Info")
-    .classList.add("currentPlayerBorder");
-  document
-    .getElementById(`player${playerTurnIndex}Chess`)
-    .classList.add("currentPlayerZIndex");
-  document.getElementById("rolldice").disabled = false; // enable rolldice button
+}
+
+function confirmSell(property) {
+  document.querySelector(".messageBoxMiddle").innerText = `你確定要以$${
+    property.currentValue * 0.8
+  }售出${property.name}?`;
+  confirmBtn(function () {
+    sold(property);
+  });
+  cancelBtn(askCompulsorySale);
+}
+
+function sold(property) {
+  let gain = property.currentValue * 0.8;
+  //add money to player
+  players[playerTurnIndex - 1].money += gain;
+  players[playerTurnIndex - 1].propValue -= property.currentValue;
+  //reset right bottom player info
+  document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
+    players[playerTurnIndex - 1].money
+  }`;
+  document.querySelector(`#player${playerTurnIndex}PropValue`).innerText = `$${
+    players[playerTurnIndex - 1].propValue
+  }`;
+  document.querySelector(`#player${playerTurnIndex}TotalValue`).innerText = `$${
+    players[playerTurnIndex - 1].money + players[playerTurnIndex - 1].propValue
+  }`;
+  // reset map change hover box
+  const parentnode = document.querySelector(`.div${property.index}`);
+  parentnode.querySelector(`.property-owner`).innerText = `地主：無`;
+  parentnode
+    .querySelector(`.property-lv${property.level}-rent`)
+    .classList.remove("current-lv-rent");
+  //reset map prop box
+  document.querySelector(`#prop${property.index}`).style.backgroundColor =
+    "#0072bc";
+  parentnode.querySelector(`.propertyheader`).style.backgroundColor = "#0072bc";
+  //reset map prop level photo
+  parentnode.querySelector(".levelup").innerHTML = "";
+  //remove property from players array
+  let ownedProp = players[playerTurnIndex - 1].ownedProp;
+  let index = ownedProp.indexOf(property);
+  ownedProp.splice(index, 1);
+  //change owner and level in places array
+  places[property.index].owner = null;
+  places[property.index].propValue = places[property.index].value;
+  places[property.index].level = 1;
+  document.querySelector(
+    ".messageBoxMiddle"
+  ).innerText = `你已售出${property.name}，獲得$${gain}。`;
+  confirmBtn(nextPlayer);
+}
+
+function bankrupt() {
+  document.querySelector(
+    ".messageBoxMiddle"
+  ).innerText = `你的現金少於0，並沒有任何物業，已自動申請破產，遊戲結束！`;
+  confirmBtn(function () {
+    showResult();
+  });
+}
+
+function nextPlayer() {
+  // check bankrupt
   if (
-    players[playerTurnIndex - 1].state == "jail" &&
-    players[playerTurnIndex - 1].stop != 1
+    players[playerTurnIndex - 1].money < 0 &&
+    players[playerTurnIndex - 1].ownedProp.length > 0
   ) {
-    document.getElementById("rolldice").disabled = true;
-    players[playerTurnIndex - 1].stop -= 1;
-    showJail();
-  } else if (players[playerTurnIndex - 1].stop == 1) {
-    players[playerTurnIndex - 1].stop -= 1;
-    players[playerTurnIndex - 1].state = "active";
+    askCompulsorySale();
+  } else if (
+    players[playerTurnIndex - 1].money < 0 &&
+    players[playerTurnIndex - 1].ownedProp.length == 0
+  ) {
+    bankrupt();
+  } else {
+    document.querySelector(".messageBox").classList.remove("show");
+    document
+      .getElementById("player" + playerTurnIndex + "Info")
+      .classList.remove("currentPlayerBorder");
+    document
+      .getElementById(`player${playerTurnIndex}Chess`)
+      .classList.remove("currentPlayerZIndex");
+    // Start from here: playerTurnIndex = next player
+    if (playerTurnIndex < players.length) {
+      playerTurnIndex += 1;
+    } else {
+      playerTurnIndex = 1;
+    }
+    // change 目前玩家 and right bottom border
+    document.getElementById("playernow").innerText =
+      players[playerTurnIndex - 1].name;
+    document
+      .getElementById("player" + playerTurnIndex + "Info")
+      .classList.add("currentPlayerBorder");
+    document
+      .getElementById(`player${playerTurnIndex}Chess`)
+      .classList.add("currentPlayerZIndex");
+    document.getElementById("rolldice").disabled = false; // enable rolldice button
+    if (
+      players[playerTurnIndex - 1].state == "jail" &&
+      players[playerTurnIndex - 1].stop != 1
+    ) {
+      document.getElementById("rolldice").disabled = true;
+      players[playerTurnIndex - 1].stop -= 1;
+      showJail();
+    } else if (players[playerTurnIndex - 1].stop == 1) {
+      players[playerTurnIndex - 1].stop -= 1;
+      players[playerTurnIndex - 1].state = "active";
+    }
   }
 }
 
@@ -519,7 +786,7 @@ function showJail() {
   document.querySelector(".messageBox").classList.add("show");
   document.querySelector(".messageBoxMiddle").innerText = `${
     players[playerTurnIndex - 1].name
-  } 還需隔離${players[playerTurnIndex - 1].stop}天。`;
+  }還需隔離${players[playerTurnIndex - 1].stop}天。`;
   confirmBtn(nextPlayer);
 }
 
@@ -550,5 +817,24 @@ function speedControl() {
   } else {
     speed = 300;
     document.getElementById("speedControlBtn").innerText = "遊戲速度：正常";
+  }
+}
+
+function showResult() {
+  document.querySelector(".resultPage").classList.remove("hide");
+  for (i = 1; i < players.length + 1; i++) {
+    const playerinfo = document.querySelector(`#player${i}EndInfo`);
+    playerinfo.querySelector(".playerName").innerText = `${
+      players[i - 1].name
+    }`;
+    playerinfo.querySelector(".playerEndMoney").innerText = `$${
+      players[i - 1].money
+    }`;
+    playerinfo.querySelector(".playerEndPropValue").innerText = `$${
+      players[i - 1].propValue
+    }`;
+    playerinfo.querySelector(".playerEndTotalValue").innerText = `$${
+      players[i - 1].propValue + players[i - 1].money
+    }`;
   }
 }

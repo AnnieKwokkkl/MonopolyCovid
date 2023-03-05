@@ -947,3 +947,14 @@ body {
   color: #333 !important;
   font-weight: 600;
 }
+
+.levelup {
+  position: absolute;
+  justify-self: center;
+  align-self: center;
+}
+
+.levelup img {
+  width: 55px;
+  height: 55px;
+}

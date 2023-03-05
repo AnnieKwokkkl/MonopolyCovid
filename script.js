@@ -1,5 +1,5 @@
 var places = [];
-var speed = 1; // 300
+var speed = 300;
 var playerTurnIndex = 1;
 
 function CreateBox(index, name, level, value, owner, currentValue) {
@@ -80,45 +80,45 @@ function startGame() {
 
 //Updated by Aqua 02.28 7:00pm
 new CreateBox(0, "起點", 0, 2000, null);
-new CreateBox(1, "將軍澳", 1, 1500, null);
+new CreateBox(1, "將軍澳", 1, 2000, null);
 new CreateBox(2, "機會", 0, 0, null);
-new CreateBox(3, "愉景灣", 1, 2500, null);
-new CreateBox(4, "東涌", 1, 1000, null);
-new CreateBox(5, "銅鑼灣", 1, 2000, null);
+new CreateBox(3, "愉景灣", 1, 4000, null);
+new CreateBox(4, "東涌", 1, 2500, null);
+new CreateBox(5, "銅鑼灣", 1, 2500, null);
 new CreateBox(6, "黃大仙", 1, 1500, null);
-new CreateBox(7, "港燈", 0, 600, null);
+new CreateBox(7, "電費", 0, 600, null);
 new CreateBox(8, "觀塘", 1, 1500, null);
 new CreateBox(9, "葵涌", 1, 1500, null);
 new CreateBox(10, "免費泊車", 0, 0, null);
-new CreateBox(11, "黃埔", 1, 1800, null);
+new CreateBox(11, "黃埔", 1, 2500, null);
 new CreateBox(12, "入息税", 0, 800, null);
-new CreateBox(13, "藍田", 1, 1300, null);
-new CreateBox(14, "啟德", 1, 1800, null);
-new CreateBox(15, "粉嶺", 1, 1000, null);
-new CreateBox(16, "馬灣", 1, 2000, null);
+new CreateBox(13, "藍田", 1, 1500, null);
+new CreateBox(14, "啟德", 1, 2500, null);
+new CreateBox(15, "粉嶺", 1, 1500, null);
+new CreateBox(16, "馬灣", 1, 4000, null);
 new CreateBox(17, "機會", 0, 0, null);
-new CreateBox(18, "長洲", 1, 1500, null);
-new CreateBox(19, "馬鞍山", 1, 1800, null);
-new CreateBox(20, "命運之輪目前物業總值：", 0, 0, null);
+new CreateBox(18, "長洲", 1, 2000, null);
+new CreateBox(19, "馬鞍山", 1, 2500, null);
+new CreateBox(20, "命運之輪", 0, 0, null);
 new CreateBox(21, "薄扶林", 1, 3000, null);
 new CreateBox(22, "中環", 1, 3000, null);
-new CreateBox(23, "淺水灣", 1, 2500, null);
+new CreateBox(23, "淺水灣", 1, 3200, null);
 new CreateBox(24, "尖沙咀", 1, 3500, null);
 new CreateBox(25, "機會", 0, 0, null);
-new CreateBox(26, "大嶼山", 1, 2500, null);
+new CreateBox(26, "大嶼山", 1, 3000, null);
 new CreateBox(27, "印花稅", 0, 600, null);
-new CreateBox(28, "深井", 1, 1000, null);
-new CreateBox(29, "天水圍", 1, 1000, null);
+new CreateBox(28, "深井", 1, 2500, null);
+new CreateBox(29, "天水圍", 1, 2000, null);
 new CreateBox(30, "入住糟糕灣", 0, 0, null);
-new CreateBox(31, "西營盤", 1, 1200, null);
+new CreateBox(31, "西營盤", 1, 3900, null);
 new CreateBox(32, "奢侈稅", 0, 500, null);
-new CreateBox(33, "北角", 1, 1500, null);
-new CreateBox(34, "太古", 1, 2000, null);
-new CreateBox(35, "利東", 1, 1800, null);
-new CreateBox(36, "康城", 1, 2000, null);
+new CreateBox(33, "北角", 1, 4000, null);
+new CreateBox(34, "太古", 1, 4200, null);
+new CreateBox(35, "利東", 1, 4200, null);
+new CreateBox(36, "康城", 1, 4500, null);
 new CreateBox(37, "機會", 0, 0, null);
-new CreateBox(38, "欣澳", 1, 1800, null);
-new CreateBox(39, "奧運", 1, 1800, null);
+new CreateBox(38, "欣澳", 1, 5000, null);
+new CreateBox(39, "奧運", 1, 6000, null);
 
 var fates = [];
 function CreateFate(text, value) {
@@ -136,7 +136,7 @@ new CreateFate("無帶口罩出街，罰款$2000。", -2000);
 new CreateFate("突然受到群眾追捧，接廣告賺取$1000報酬。", 1000);
 new CreateFate("打疫苗抽獎，中獎$500。", 500);
 new CreateFate(
-  "疫情下，防疫物資短缺，但人間有情，有人資助你＄1000物資費。",
+  "疫情下，防疫物資短缺，但人間有情，有人資助你$1000物資費。",
   1000
 );
 new CreateFate("獲公司邀請出席外國活動，賺取$3000報酬。", 3000);
@@ -226,9 +226,9 @@ function rollDice() {
         }
         // if player owns the property
         else if (playerTurnIndex == currentPlace.owner) {
-          let tolvl2price = currentPlace.value * (2 / 5);
-          let tolvl3price = currentPlace.value;
-          let tolvl4price = currentPlace.value * 2;
+          let tolvl2price = currentPlace.value * (1 / 5);
+          let tolvl3price = currentPlace.value * (3 / 5);
+          let tolvl4price = currentPlace.value;
           // if property level max already
           if (currentPlace.level == 4) {
             proplevelmaxed(currentPlace);
@@ -447,13 +447,13 @@ function Chances() {
 function payRent(rentReceiver, currentPlace) {
   let rent = 0;
   if (currentPlace.level == 1) {
-    rent = currentPlace.value * (1 / 10);
-  } else if (currentPlace.level == 2) {
     rent = currentPlace.value * (1 / 5);
-  } else if (currentPlace.level == 3) {
+  } else if (currentPlace.level == 2) {
     rent = currentPlace.value * (1 / 2);
+  } else if (currentPlace.level == 3) {
+    rent = currentPlace.value * 1;
   } else if (currentPlace.level == 4) {
-    rent = currentPlace.value;
+    rent = currentPlace.value * 2;
   }
   players[playerTurnIndex - 1].money -= rent;
   players[rentReceiver - 1].money += rent;
@@ -693,6 +693,8 @@ function sold(property) {
   document.querySelector(`#prop${property.index}`).style.backgroundColor =
     "#0072bc";
   parentnode.querySelector(`.propertyheader`).style.backgroundColor = "#0072bc";
+  //reset map prop level photo
+  parentnode.querySelector(".levelup").innerHTML = "";
   //remove property from players array
   let ownedProp = players[playerTurnIndex - 1].ownedProp;
   let index = ownedProp.indexOf(property);
@@ -770,7 +772,7 @@ function showJail() {
   document.querySelector(".messageBox").classList.add("show");
   document.querySelector(".messageBoxMiddle").innerText = `${
     players[playerTurnIndex - 1].name
-  } 還需隔離${players[playerTurnIndex - 1].stop}天。`;
+  }還需隔離${players[playerTurnIndex - 1].stop}天。`;
   confirmBtn(nextPlayer);
 }
 

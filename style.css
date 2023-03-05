@@ -621,7 +621,7 @@ body {
   border-radius: 10px;
 }
 
-#playerBigBox {
+.playerBigBox {
   margin: 20px auto;
   padding: 20px 10px 20px 10px;
   background-color: white;
@@ -630,7 +630,7 @@ body {
   border-radius: 10px;
 }
 
-#playercolbar {
+.playercolbar {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
@@ -666,17 +666,17 @@ body {
   text-align: center;
 }
 
-#playercol1 {
+.playercol1 {
   padding-left: 18px;
 }
-#playercol2 {
+.playercol2 {
   padding-left: 45px;
 }
-#playercol3 {
+.playercol3 {
   padding-left: 25px;
 }
 
-#playercol4 {
+.playercol4 {
   padding-left: 10px;
 }
 
@@ -957,4 +957,102 @@ body {
 .levelup img {
   width: 55px;
   height: 55px;
+}
+
+.sellPropertyBox {
+  width: 340px;
+  background-color: white;
+}
+
+.sellItemTitleBig {
+  display: grid;
+  grid-template-columns: 2fr 1fr 3fr;
+}
+
+.sellItemTitle {
+  font-size: 14px;
+  text-align: center;
+  background-color: #d9d9d9;
+  border: 3px solid black;
+  height: 20px;
+}
+
+.sellItemBtn {
+  display: grid;
+  grid-template-columns: 2fr 1fr 3fr;
+  font-size: 13px;
+  text-align: center;
+}
+
+.sellItemBtn:hover {
+  background-color: #0088e2;
+}
+
+.resultPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+  height: 850px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: large;
+  font-weight: 600;
+  text-align: center;
+  z-index: 10;
+}
+
+.resultBox {
+  width: 400px;
+  background-color: #0072bc;
+  padding: 50px 50px 50px 50px;
+  border: 10px solid #ffffff;
+  border-radius: 10px;
+  z-index: 100;
+}
+
+.champion {
+  padding-top: 20px;
+}
+
+.resultBox .playerName {
+  color: #000000;
+}
+
+.restartBtn {
+  width: 200px;
+  height: 50px;
+  color: #0072bc;
+  background-color: white;
+  border: 5px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 30px;
+}
+
+.restartBtn:hover {
+  color: white;
+  background-color: #0072bc;
+}
+
+.champion {
+  font-weight: 500;
+}
+
+.longResult {
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.playerResultBigBox {
+  margin: 20px auto;
+  padding: 20px 10px 20px 10px;
+  background-color: white;
+  width: 280px;
+  height: 430px;
+  border-radius: 10px;
 }

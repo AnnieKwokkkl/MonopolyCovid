@@ -69,6 +69,60 @@
           <button class="startBtn" onclick="startGame()">開始遊戲</button>
         </div>
       </div>
+      <div class="resultPage hide">
+        <div class="resultBox">
+          <div style="font-size: 24px">遊戲結果</div>
+          <div class="longResult">詳情如下:</div>
+          <div class="playerResultBigBox">
+            <div class="playercolbar">
+              <div class="playercol1">玩家</div>
+              <div class="playercol2">現金</div>
+              <div class="playercol3">物業總值</div>
+              <div class="playercol4">資產總值</div>
+            </div>
+            <div id="player1EndInfo" class="playerInfo">
+              <div class="playerIconBar">
+                <img src="./img/player1.png" height="40px" />
+                <div class="playerName">Nana</div>
+              </div>
+              <div class="playerMoney playerEndMoney">$15000</div>
+              <div class="playerMoney playerEndPropValue">$0</div>
+              <div class="playerMoney playerEndTotalValue">$15000</div>
+            </div>
+            <div id="player2EndInfo" class="playerInfo">
+              <div class="playerIconBar">
+                <img src="./img/player2.png" height="40px" />
+                <div class="playerName">亞視一姐</div>
+              </div>
+              <div class="playerMoney playerEndMoney">$15000</div>
+              <div class="playerMoney playerEndPropValue">$0</div>
+              <div class="playerMoney playerEndTotalValue">$15000</div>
+            </div>
+            <div id="player3EndInfo" class="playerInfo">
+              <div class="playerIconBar">
+                <img src="./img/player3.png" height="40px" />
+                <div class="playerName">Happy 8</div>
+              </div>
+              <div class="playerMoney playerEndMoney">$15000</div>
+              <div class="playerMoney playerEndPropValue">$0</div>
+              <div class="playerMoney playerEndTotalValue">$15000</div>
+            </div>
+            <div id="player4EndInfo" class="playerInfo">
+              <div class="playerIconBar">
+                <img src="./img/player4.png" height="40px" />
+                <div class="playerName">港大美女</div>
+              </div>
+              <div class="playerMoney playerEndMoney">$15000</div>
+              <div class="playerMoney playerEndPropValue">$0</div>
+              <div class="playerMoney playerEndTotalValue">$15000</div>
+            </div>
+          </div>
+          <button class="restartBtn" onclick="window.location.reload()">
+            重新開始
+          </button>
+        </div>
+      </div>
+
       <div class="board">
         <div class="parent">
           <div class="messageBox">
@@ -689,12 +743,12 @@
             </ul>
           </div>
 
-          <div id="playerBigBox">
-            <div id="playercolbar">
-              <div id="playercol1">玩家</div>
-              <div id="playercol2">現金</div>
-              <div id="playercol3">物業總值</div>
-              <div id="playercol4">資產總值</div>
+          <div class="playerBigBox">
+            <div class="playercolbar">
+              <div class="playercol1">玩家</div>
+              <div class="playercol2">現金</div>
+              <div class="playercol3">物業總值</div>
+              <div class="playercol4">資產總值</div>
             </div>
             <div id="player1Info" class="playerInfo">
               <div class="playerIconBar">

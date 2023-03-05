@@ -652,8 +652,8 @@ body {
   font-size: 15px;
 }
 
-.playerInfo > .playerName {
-  font-size: 50px;
+.playerInfo .playerName {
+  white-space: nowrap;
 }
 
 .playerIcon {

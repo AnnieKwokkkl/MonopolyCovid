@@ -30,10 +30,24 @@ function CreatePlayer(name, index, money, state, stop, position, color) {
 }
 
 function startGame() {
-  const player1Name = document.getElementById("typePlayer1Name").value;
-  const player2Name = document.getElementById("typePlayer2Name").value;
-  const player3Name = document.getElementById("typePlayer3Name").value;
-  const player4Name = document.getElementById("typePlayer4Name").value;
+  var player1Name = document.getElementById("typePlayer1Name").value;
+  var player2Name = document.getElementById("typePlayer2Name").value;
+  var player3Name = document.getElementById("typePlayer3Name").value;
+  var player4Name = document.getElementById("typePlayer4Name").value;
+  //default name
+  if (player1Name==''){
+    player1Name='Nana'
+  }
+  if (player2Name==''){
+    player2Name='亞視一姐'
+  }
+  if (player3Name==''){
+    player3Name='Happy 8'
+  }
+  if (player4Name==''){
+    player4Name='港大美女'
+  }
+
   new CreatePlayer(player1Name, 1, 15000, "active", 0, 0, "#EF847C");
   new CreatePlayer(player2Name, 2, 15000, "active", 0, 0, "#DDD05B");
   new CreatePlayer(player3Name, 3, 15000, "active", 0, 0, "#97BC9A");

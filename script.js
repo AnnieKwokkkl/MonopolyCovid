@@ -143,7 +143,7 @@ function CreateFate(text, value) {
 
 new CreateFate("獲得消費券$2000。", 2000);
 new CreateFate("網上情緣受騙$1000。", -1000);
-new CreateFate("Nana結婚, Happy8 比人情$1000。", -1000);
+new CreateFate("Nana結婚, 比人情$1000。", -1000);
 new CreateFate("參加全城造星，交報名費$500。", -500);
 new CreateFate("中六合彩$1000。", 1000);
 new CreateFate("無帶口罩出街，罰款$2000。", -2000);
@@ -687,6 +687,9 @@ function sold(property) {
   //add money to player
   players[playerTurnIndex - 1].money += gain;
   players[playerTurnIndex - 1].propValue -= property.currentValue;
+  if (players[playerTurnIndex - 1].propValue <= 0) {
+  players[playerTurnIndex - 1].propValue = 0;
+  }
   //reset right bottom player info
   document.querySelector(`#player${playerTurnIndex}Money`).innerText = `$${
     players[playerTurnIndex - 1].money
